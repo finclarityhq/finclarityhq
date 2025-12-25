@@ -14,10 +14,4 @@
 - **Tools & Resources:** Calculators, charts, and resources for smarter financial decisions.  
 - **Beginner-Friendly:** Simplified explanations for anyone starting their financial journey.
 
----
 
-## 🚀 Getting Started
-
-1. **Clone the repository**:
-   ```bash
-   git clone https://github.com/finclarityhq/finclarityhq.git
