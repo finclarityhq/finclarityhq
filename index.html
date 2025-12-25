@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>finclarityhq - Professional Financial Education & Market Insights</title>
+<meta name="description" content="finclarityhq provides expert financial education, market insights, investing guides, cryptocurrency tutorials, and personal finance resources for smarter financial decisions.">
+<meta name="keywords" content="Finance, Investing, Stock Market, Cryptocurrency, Personal Finance, Financial Education, Wealth Management, Market Insights">
+
+<!-- Google AdSense Auto Ads -->
+<script data-ad-client="ca-pub-XXXXXXXXXXXXXXXX" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+<!-- FAQ Schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type":"Question","name":"What is finclarityhq?","acceptedAnswer":{"@type":"Answer","text":"finclarityhq is a professional financial education platform providing insights, guides, and tools for investors, personal finance enthusiasts, and crypto learners."}},
+    {"@type":"Question","name":"Who can benefit from finclarityhq?","acceptedAnswer":{"@type":"Answer","text":"Beginners, advanced investors, financial professionals, and anyone seeking reliable financial education can benefit from our structured resources."}},
+    {"@type":"Question","name":"Does finclarityhq provide investment advice?","acceptedAnswer":{"@type":"Answer","text":"No, finclarityhq provides educational content and insights. All investment decisions should be made independently or with a certified financial advisor."}},
+    {"@type":"Question","name":"Can I contribute to finclarityhq?","acceptedAnswer":{"@type":"Answer","text":"Yes! You can contribute by suggesting improvements or submitting educational content through GitHub issues or pull requests."}}
+  ]
+}
+</script>
+
+<!-- AOS Animation Library -->
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+<style>
+/* ---------- Global Styles ---------- */
+body {font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin:0; padding:0; background:#f7f9fb; color:#1a1a1a; scroll-behavior:smooth;}
+a {transition:0.3s;}
+a:hover {color:#ffd700;}
+nav a {transition:0.3s;}
+section {padding:100px 20px; max-width:1200px; margin:auto; position:relative; z-index:1; overflow:hidden;}
+h2 {color:#1b1f3b; margin-bottom:30px; font-size:2.4em; border-bottom:3px solid #2a2a72; display:inline-block; padding-bottom:5px;}
+.card {background:white; padding:30px; border-radius:15px; box-shadow:0 12px 35px rgba(0,0,0,0.15); transition:0.3s; opacity:0;}
+.card:hover {transform:translateY(-8px); box-shadow:0 16px 45px rgba(0,0,0,0.22);}
+.button {display:inline-block; padding:15px 30px; background:#ffd700; color:#1b1f3b; text-decoration:none; border-radius:10px; font-weight:600; margin-top:15px; transition:0.3s;}
+.button:hover {background:#ffea70; transform:translateY(-3px);}
+.icon {font-size:2.4em; color:#2a2a72; margin-bottom:12px;}
+.article-content p {margin-bottom:25px; line-height:1.9;}
+.faq h3 {margin-bottom:12px; color:#2a2a72;}
+
+/* ---------- Navigation ---------- */
+nav {background:#2a2a72; padding:15px; text-align:center; position:sticky; top:0; z-index:100;}
+nav a {color:white; margin:0 20px; text-decoration:none; font-weight:600;}
+nav a:hover {color:#ffd700;}
+
+/* ---------- Hero Section ---------- */
+#hero {position:relative; height:100vh; overflow:hidden; display:flex; align-items:center; justify-content:center; background:linear-gradient(to right, #1b1f3b, #2a2a72); color:white;}
+.hero-content {position:relative; text-align:center; z-index:2; padding:0 20px;}
+.hero-content h1 {font-size:3.5em; letter-spacing:2px; margin:0; text-shadow:2px 2px 12px rgba(0,0,0,0.7);}
+.hero-content p {margin-top:20px; font-size:1.4em; text-shadow:1px 1px 8px rgba(0,0,0,0.6);}
+.hero-button {display:inline-block; padding:18px 35px; font-size:1.2em; font-weight:700; background:#ffd700; color:#1b1f3b; border-radius:10px; margin-top:25px; box-shadow:0 0 15px rgba(255,255,0,0.5);}
+.hero-button:hover {box-shadow:0 0 25px rgba(255,255,0,0.8); transform:translateY(-3px);}
+.animated-text span {display:block; opacity:0; transform:translateY(20px); transition:1s ease;}
+.animated-text span.show {opacity:1; transform:translateY(0);}
+canvas#heroParticles {position:absolute; top:0; left:0; width:100%; height:100%; z-index:1;}
+
+/* ---------- Section Background Gradients ---------- */
+#features {background:linear-gradient(120deg, #f0f4ff, #d9e2ff);}
+#resources {background:linear-gradient(120deg, #fffaf0, #ffe6cc);}
+#articles {background:linear-gradient(120deg, #f0fff4, #ccffe0);}
+#faq {background:linear-gradient(120deg, #fff0f5, #ffccff);}
+#contact {background:linear-gradient(120deg, #f9fff0, #e0ffcc);}
+
+/* ---------- Footer ---------- */
+footer {background:#1b1f3b; color:white; padding:50px 20px; text-align:center; font-size:0.9em;}
+</style>
+</head>
+<body onload="AOS.init({duration:1200, once:true})">
+
+<!-- Google AdSense -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+     data-ad-slot="1234567890"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+
+<!-- Hero Section -->
+<header id="hero">
+  <canvas id="heroParticles"></canvas>
+  <div class="hero-content" data-aos="fade-down">
+    <h1 class="animated-text">
+      <span>Professional Financial Education</span>
+      <span>Market Insights & Investing Guides</span>
+      <span>Cryptocurrency & Wealth Management</span>
+    </h1>
+    <p>Empowering smarter financial decisions with expert analysis and educational resources.</p>
+    <a class="button hero-button" href="#resources">Explore Resources</a>
+  </div>
+</header>
+
+<!-- Navigation -->
+<nav>
+  <a href="#features">Features</a>
+  <a href="#resources">Resources</a>
+  <a href="#articles">Guides</a>
+  <a href="#faq">FAQ</a>
+  <a href="#contact">Contact</a>
+</nav>
+
+<!-- Features Section -->
+<section id="features" data-aos="fade-up">
+<h2>Our Professional Services</h2>
+<div class="features">
+  <div class="card" data-aos="fade-up" data-aos-delay="100">
+    <div class="icon">📊</div>
+    <h3>Comprehensive Investing Guides</h3>
+    <p>Step-by-step tutorials covering stocks, mutual funds, ETFs, portfolio management, and advanced investing strategies for all levels.</p>
+  </div>
+  <div class="card" data-aos="fade-up" data-aos-delay="200">
+    <div class="icon">📈</div>
+    <h3>Market Insights</h3>
+    <p>Expert analysis of global markets, stock trends, commodities, bonds, and emerging opportunities for informed decisions.</p>
+  </div>
+  <div class="card" data-aos="fade-up" data-aos-delay="300">
+    <div class="icon">💻</div>
+    <h3>Digital Assets & Cryptocurrency</h3>
+    <p>Professional guides on cryptocurrency, blockchain, NFTs, and other digital assets for modern financial literacy.</p>
+  </div>
+  <div class="card" data-aos="fade-up" data-aos-delay="400">
+    <div class="icon">🛠️</div>
+    <h3>Financial Tools & Calculators</h3>
+    <p>Access calculators, charts, and analytical tools to model investments, risk, and wealth planning like a professional analyst.</p>
+  </div>
+</div>
+</section>
+
+<!-- Resources Section -->
+<section id="resources" data-aos="fade-up">
+<h2>Educational Resources</h2>
+<div class="resources-list">
+  <div class="card resources" data-aos="fade-right" data-aos-delay="100">
+    <h3>Investing Basics</h3>
+    <p>Learn the fundamentals of investing in stocks, ETFs, and mutual funds. <a href="https://www.investopedia.com/terms/i/investing.asp" target="_blank">Read more</a></p>
+  </div>
+  <div class="card resources" data-aos="fade-right" data-aos-delay="200">
+    <h3>Personal Finance</h3>
+    <p>Master budgeting, saving, and wealth-building strategies for long-term stability. <a href="https://www.nerdwallet.com/" target="_blank">Read more</a></p>
+  </div>
+  <div class="card resources" data-aos="fade-left" data-aos-delay="300">
+    <h3>Financial News & Insights</h3>
+    <p>Stay informed with professional updates on global markets. <a href="https://www.bloomberg.com/markets" target="_blank">Read more</a></p>
+  </div>
+  <div class="card resources" data-aos="fade-left" data-aos-delay="400">
+    <h3>Cryptocurrency Basics</h3>
+    <p>Understand blockchain, wallets, and cryptocurrencies with professional guides. <a href="https://www.coinbase.com/learn/crypto-basics" target="_blank">Read more</a></p>
+  </div>
+</div>
+</section>
+
+<!-- Articles Section -->
+<section id="articles" data-aos="fade-up">
+<h2>Professional Finance Guides</h2>
+<div class="articles-list article-content">
+  <p data-aos="fade-up" data-aos-delay="100">Personal Finance & Wealth Planning: Budgeting, emergency funds, debt management, and investment strategies for long-term stability.</p>
+  <p data-aos="fade-up" data-aos-delay="200">Stock Market Fundamentals: Comprehensive guides on stock markets, technical & fundamental analysis, market cycles, and portfolio diversification.</p>
+  <p data-aos="fade-up" data-aos-delay="300">Cryptocurrency & Digital Assets: Blockchain, DeFi, NFTs, and digital finance explained with a professional approach.</p>
+  <p data-aos="fade-up" data-aos-delay="400">Financial Tools & Calculators: Step-by-step usage of calculators, investment trackers, and portfolio models for informed decisions.</p>
+</div>
+</section>
+
+<!-- FAQ Section -->
+<section id="faq" data-aos="fade-up">
+<h2>Frequently Asked Questions</h2>
+<div class="faq">
+  <h3>Q: What is finclarityhq?</h3>
+  <p>A: finclarityhq is a professional financial education platform providing insights, guides, and tools for investors, personal finance enthusiasts, and crypto learners.</p>
+  <h3>Q: Who can benefit from finclarityhq?</h3>
+  <p>A: Beginners, advanced investors, financial professionals, and anyone seeking reliable financial education can benefit from our structured resources.</p>
+  <h3>Q: Does finclarityhq provide investment advice?</h3>
+  <p>A: No, finclarityhq provides educational content and insights. All investment decisions should be made independently or with a certified financial advisor.</p>
+  <h3>Q: Can I contribute to finclarityhq?</h3>
+  <p>A: Yes! You can contribute by suggesting improvements or submitting educational content through GitHub issues or pull requests.</p>
+</div>
+</section>
+
+<!-- Contact Section -->
+<section id="contact" data-aos="fade-up">
+<h2>Contact Us</h2>
+<p>For professional inquiries, collaborations, or contributions, reach out via email:</p>
+<p><strong>Email:</strong> rahulbsws098@gmail.com</p>
+</section>
+
+<!-- Footer -->
+<footer data-aos="fade-up">
+&copy; 2025 finclarityhq. All Rights Reserved.
+</footer>
+
+<script>
+// ---------- Animated Hero Text ----------
+let textSpans = document.querySelectorAll('.animated-text span');
+let current = 0;
+function showNextText() {
+  textSpans.forEach(span => span.classList.remove('show'));
+  textSpans[current].classList.add('show');
+  current = (current + 1) % textSpans.length;
+}
+showNextText();
+setInterval(showNextText, 3500);
+
+// ---------- Particle Background ----------
+const canvas = document.getElementById('heroParticles');
+const ctx = canvas.getContext('2d');
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+let particlesArray = [];
+class Particle {
+  constructor(){ this.x=Math.random()*canvas.width; this.y=Math.random()*canvas.height; this.size=Math.random()*2+1; this.speedX=Math.random()*1-0.5; this.speedY=Math.random()*1-0.5; }
+  update(){ this.x+=this.speedX; this.y+=this.speedY; if(this.x>canvas.width||this.x<0)this.speedX*=-1; if(this.y>canvas.height||this.y<0)this.speedY*=-1; }
+  draw(){ ctx.fillStyle='rgba(255,255,255,0.6)'; ctx.beginPath(); ctx.arc(this.x,this.y,this.size,0,Math.PI*2); ctx.fill(); }
+}
+function initParticles(){ particlesArray=[]; let number=Math.floor(canvas.width/5); for(let i=0;i<number;i++){ particlesArray.push(new Particle()); } }
+initParticles();
+function animateParticles(){ ctx.clearRect(0,0,canvas.width,canvas.height); particlesArray.forEach(p=>{p.update();p.draw();}); requestAnimationFrame(animateParticles); }
+animateParticles();
+window.addEventListener('resize', ()=>{ canvas.width=window.innerWidth; canvas.height=window.innerHeight; initParticles(); });
+
+AOS.init({duration:1200, once:true});
+</script>
+
+</body>
+</html>
