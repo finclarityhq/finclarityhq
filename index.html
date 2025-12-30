@@ -3,10 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FinClarity Terminal | Institutional Wealth Operating System</title>
-    <meta name="description" content="Calculate mutual fund returns with FinClarity Terminal. Institutional-grade SIP calculator with Step-Up logic, inflation adjustments, and verified 2025 tax math.">
     
-    <!-- JSON-LD SCHEMA FOR SERP RICH SNIPPETS -->
+    <!-- PRIMARY SEO ARCHITECTURE -->
+    <title>Institutional SIP Terminal | 12.5% LTCG Tax Optimized | FinClarity HQ</title>
+    <meta name="description" content="The definitive wealth terminal for Indian investors. Calculate mutual fund returns with 2025 budget tax standards, Step-Up modeling, and inflation adjustments. Access the full FinClarity Academy.">
+    <meta name="keywords" content="SIP Calculator, Mutual Fund returns India, Step-up SIP, Wealth Projection, 12.5% LTCG, FinClarity, Financial Independence, Retirement Planning Bharat">
+    <link rel="canonical" href="https://finclarityhq.github.io/finclarityhq/" />
+
+    <!-- JSON-LD SEMANTIC GRAPH (SoftwareApplication) -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -19,47 +23,63 @@
     }
     </script>
 
+    <!-- LIBRARIES -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
     <style>
-        :root { --navy: #0f172a; --emerald: #10b981; --slate: #1e293b; }
-        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: var(--navy); color: #f8fafc; }
+        :root { --navy: #0f172a; --emerald: #10b981; --slate: #1e293b; --royal: #3b82f6; --rose: #f43f5e; }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: var(--navy); color: #f8fafc; overflow-x: hidden; }
         .glass-panel { background: rgba(30, 41, 59, 0.4); backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.05); }
         
-        /* Neumorphic Sliders */
+        /* Input & Slider Architecture */
         input[type=range] { -webkit-appearance: none; background: transparent; cursor: pointer; }
         input[type=range]::-webkit-slider-runnable-track { background: rgba(16, 185, 129, 0.1); border-radius: 10px; height: 8px; border: 1px solid rgba(16, 185, 129, 0.2); }
-        input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; height: 24px; width: 24px; background: var(--emerald); border-radius: 50%; margin-top: -9px; box-shadow: 0 0 15px var(--emerald); border: 3px solid var(--navy); }
+        input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; height: 22px; width: 22px; background: var(--emerald); border-radius: 50%; margin-top: -8px; box-shadow: 0 0 15px var(--emerald); border: 3px solid var(--navy); }
         
+        .number-box { background: rgba(15, 23, 42, 0.8); border: 1px solid rgba(255,255,255,0.1); border-radius: 10px; padding: 6px 12px; font-family: 'JetBrains Mono', monospace; font-weight: 700; color: var(--emerald); text-align: right; width: 125px; outline: none; transition: 0.3s; }
+        .number-box:focus { border-color: var(--emerald); box-shadow: 0 0 15px rgba(16, 185, 129, 0.3); }
+
         .emerald-gradient { background: linear-gradient(135deg, #10b981 0%, #3b82f6 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         
-        /* Navigation Dropdown Logic */
+        /* Navigation Mega Menu Logic */
         .nav-dropdown:hover .dropdown-content { display: block; opacity: 1; transform: translateY(0); }
-        .dropdown-content { display: none; opacity: 0; transform: translateY(10px); transition: all 0.3s ease; }
+        .dropdown-content { display: none; opacity: 0; transform: translateY(10px); transition: all 0.3s ease; z-index: 200; }
+
+        #growthChart { height: 420px !important; width: 100% !important; }
+        .prose h3 { color: white; font-weight: 800; text-transform: uppercase; margin-top: 4rem; border-left: 4px solid var(--emerald); padding-left: 1rem; }
+        .prose p { margin-bottom: 1.5rem; line-height: 1.8; font-size: 1.1rem; color: #94a3b8; }
     </style>
 </head>
 <body class="antialiased">
 
-    <!-- NAVIGATION BAR -->
-    <nav class="h-20 border-b border-white/5 flex items-center justify-between px-8 sticky top-0 bg-navy/80 backdrop-blur-md z-[110]">
+    <!-- INSTITUTIONAL TRUST BAR -->
+    <div class="bg-emerald-500/10 border-b border-emerald-500/20 py-2.5 px-8 text-center text-[10px] uppercase tracking-[0.4em] text-emerald-500 font-black sticky top-0 z-[110] backdrop-blur-xl">
+        FINCLARITY MASTER TERMINAL • 2025-26 TAX-OPTIMIZED • <span id="current-date">DECEMBER 2025</span>
+    </div>
+
+    <!-- NAVIGATION MEGA-MENU (ALL LINKS INCLUDED) -->
+    <nav class="h-20 glass-panel sticky top-12 z-[100] flex items-center justify-between px-8 mx-4 md:mx-10 rounded-2xl mt-4 shadow-2xl">
         <div class="flex items-center space-x-3">
-            <div class="w-10 h-10 bg-emerald-500 rounded-xl flex items-center justify-center text-navy font-black text-xl">F</div>
+            <div class="w-10 h-10 bg-emerald-600 rounded-xl flex items-center justify-center text-white font-black text-xl">F</div>
             <span class="text-xl font-bold tracking-tighter uppercase hidden sm:block">FinClarity <span class="text-emerald-500 italic">Terminal</span></span>
         </div>
 
-        <div class="hidden lg:flex space-x-10 items-center">
+        <div class="hidden lg:flex space-x-8 items-center">
             <!-- Tools Category -->
             <div class="nav-dropdown relative group">
                 <button class="text-[10px] font-black uppercase tracking-widest text-slate-400 group-hover:text-emerald-500 flex items-center transition">
-                    Wealth Tools <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    Wealth Tools <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7"></path></svg>
                 </button>
-                <div class="dropdown-content absolute top-full left-0 w-56 pt-4">
-                    <div class="glass-panel p-4 rounded-2xl shadow-2xl border border-white/10 bg-slate-900/90">
-                        <a href="index.html" class="block px-4 py-2 text-[10px] font-bold uppercase text-slate-300 hover:text-emerald-500">SIP Terminal</a>
-                        <a href="retirement-india.html" class="block px-4 py-2 text-[10px] font-bold uppercase text-slate-300 hover:text-emerald-500">FIRE Hub</a>
-                        <a href="asset-allocation.html" class="block px-4 py-2 text-[10px] font-bold uppercase text-slate-300 hover:text-emerald-500">The Quadrant</a>
-                        <a href="swp-architecture.html" class="block px-4 py-2 text-[10px] font-bold uppercase text-slate-300 hover:text-emerald-500">SWP Engine</a>
+                <div class="dropdown-content absolute top-full left-0 w-64 pt-4">
+                    <div class="glass-panel p-4 rounded-2xl bg-slate-900/95 border border-white/10 shadow-2xl">
+                        <a href="index.html" class="block px-4 py-2 text-[10px] font-bold text-emerald-500">SIP Terminal</a>
+                        <a href="retirement-india.html" class="block px-4 py-2 text-[10px] font-bold text-slate-300 hover:text-emerald-500">Retirement Solvency</a>
+                        <a href="asset-allocation.html" class="block px-4 py-2 text-[10px] font-bold text-slate-300 hover:text-emerald-500">The Quadrant</a>
+                        <a href="swp-architecture.html" class="block px-4 py-2 text-[10px] font-bold text-slate-300 hover:text-emerald-500">SWP Engine</a>
                     </div>
                 </div>
             </div>
@@ -67,192 +87,313 @@
             <!-- Academy Category -->
             <div class="nav-dropdown relative group">
                 <button class="text-[10px] font-black uppercase tracking-widest text-slate-400 group-hover:text-emerald-500 flex items-center transition">
-                    Academy <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    Deep Academy <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7"></path></svg>
                 </button>
-                <div class="dropdown-content absolute top-full left-0 w-64 pt-4">
-                    <div class="glass-panel p-4 rounded-2xl shadow-2xl border border-white/10 bg-slate-900/90">
-                        <a href="sip-guide.html" class="block px-4 py-2 text-[10px] font-bold uppercase text-slate-300 hover:text-emerald-500">SIP Physics (Quant)</a>
-                        <a href="sip-vs-lumpsum.html" class="block px-4 py-2 text-[10px] font-bold uppercase text-slate-300 hover:text-emerald-500">Strategic Entry</a>
-                        <a href="taxation-112a.html" class="block px-4 py-2 text-[10px] font-bold uppercase text-slate-300 hover:text-emerald-500">Taxation (112A)</a>
-                        <a href="human-gap.html" class="block px-4 py-2 text-[10px] font-bold uppercase text-slate-300 hover:text-emerald-500">The Human Gap</a>
-                        <a href="market-cycles.html" class="block px-4 py-2 text-[10px] font-bold uppercase text-slate-300 hover:text-emerald-500">Market Cycles</a>
+                <div class="dropdown-content absolute top-full left-0 w-72 pt-4">
+                    <div class="glass-panel p-4 rounded-2xl bg-slate-900/95 border border-white/10 shadow-2xl">
+                        <a href="sip-guide.html" class="block px-4 py-2 text-[10px] font-bold text-slate-300 hover:text-emerald-500">SIP Physics (Quant)</a>
+                        <a href="sip-vs-lumpsum.html" class="block px-4 py-2 text-[10px] font-bold text-slate-300 hover:text-emerald-500">Strategic Entry</a>
+                        <a href="taxation-112a.html" class="block px-4 py-2 text-[10px] font-bold text-slate-300 hover:text-emerald-500">Taxation (LTCG)</a>
+                        <a href="human-gap.html" class="block px-4 py-2 text-[10px] font-bold text-slate-300 hover:text-emerald-500">The Human Gap</a>
+                        <a href="market-cycles.html" class="block px-4 py-2 text-[10px] font-bold text-slate-300 hover:text-emerald-500">Market Cycles</a>
                     </div>
                 </div>
             </div>
-
             <a href="roadmap.html" class="text-[10px] font-black uppercase tracking-widest text-slate-400 hover:text-emerald-500 transition">Roadmap</a>
         </div>
 
-        <button onclick="window.location.href='roadmap.html'" class="bg-emerald-500 text-navy text-[10px] font-black uppercase px-6 py-2.5 rounded-full hover:bg-white transition duration-500">Start Planning</button>
+        <button onclick="window.location.href='roadmap.html'" class="bg-emerald-500 text-navy text-[10px] font-black uppercase px-6 py-2.5 rounded-full hover:bg-white transition duration-500 shadow-xl shadow-emerald-500/20">Master Plan</button>
     </nav>
 
-    <main class="max-w-7xl mx-auto px-6 py-12">
-        
-        <!-- CALCULATOR SECTION -->
-        <div class="grid lg:grid-cols-12 gap-8 mb-20">
-            <!-- INPUTS -->
-            <section class="lg:col-span-4 glass-panel p-8 rounded-[2.5rem] space-y-10">
-                <div class="flex items-center space-x-3">
-                    <span class="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></span>
-                    <h2 class="text-xs font-black uppercase tracking-widest text-emerald-500">Configuration</h2>
-                </div>
-                <div class="space-y-10">
-                    <div>
-                        <div class="flex justify-between mb-4"><label class="text-[10px] font-black text-slate-500 uppercase">Monthly SIP</label><span class="text-emerald-400 font-mono font-bold text-xl">₹<span id="label-monthly">25,000</span></span></div>
-                        <input type="range" id="input-monthly" min="500" max="500000" step="500" value="25000" class="w-full">
+    <!-- CALCULATOR INTERFACE -->
+    <main class="max-w-[1440px] mx-auto px-6 py-12 md:py-20">
+        <header class="mb-20">
+            <h1 class="text-6xl md:text-[8.5rem] font-black tracking-tighter leading-none mb-6">
+                WEALTH <br><span class="emerald-gradient italic">PHYSICS.</span>
+            </h1>
+            <p class="text-slate-400 max-w-2xl text-xl font-medium">Deconstructing the mathematics of compounding. Model your future with institutional-grade precision.</p>
+        </header>
+
+        <div class="grid lg:grid-cols-12 gap-8 mb-32">
+            
+            <!-- PRECISION INPUTS (SLIDERS + NUMBERS) -->
+            <section class="lg:col-span-4 glass-panel p-8 md:p-10 rounded-[3rem] space-y-12 shadow-2xl">
+                <div class="flex items-center space-x-3"><span class="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></span><h2 class="text-xs font-black uppercase tracking-widest text-slate-500">Engine Parameters</h2></div>
+
+                <div class="space-y-12">
+                    <!-- SIP Amount -->
+                    <div class="space-y-5">
+                        <div class="flex justify-between items-center">
+                            <label class="text-[10px] font-black text-slate-500 uppercase tracking-widest">Monthly SIP (₹)</label>
+                            <input type="number" id="num-monthly" value="25000" class="number-box">
+                        </div>
+                        <input type="range" id="input-monthly" min="500" max="1000000" step="500" value="25000" class="w-full">
                     </div>
-                    <div>
-                        <div class="flex justify-between mb-4"><label class="text-[10px] font-black text-slate-500 uppercase tracking-widest">Returns (p.a)</label><span class="text-emerald-400 font-mono font-bold text-xl"><span id="label-rate">12</span>%</span></div>
+
+                    <!-- Returns Rate -->
+                    <div class="space-y-5">
+                        <div class="flex justify-between items-center">
+                            <label class="text-[10px] font-black text-slate-500 uppercase tracking-widest">Returns (%)</label>
+                            <input type="number" id="num-rate" value="12" step="0.5" class="number-box">
+                        </div>
                         <input type="range" id="input-rate" min="1" max="30" step="0.5" value="12" class="w-full">
                     </div>
-                    <div>
-                        <div class="flex justify-between mb-4"><label class="text-[10px] font-black text-slate-500 uppercase tracking-widest">Time (Years)</label><span class="text-emerald-400 font-mono font-bold text-xl"><span id="label-years">15</span>Y</span></div>
+
+                    <!-- Time Horizon -->
+                    <div class="space-y-5">
+                        <div class="flex justify-between items-center">
+                            <label class="text-[10px] font-black text-slate-500 uppercase tracking-widest">Horizon (Yrs)</label>
+                            <input type="number" id="num-years" value="15" class="number-box">
+                        </div>
                         <input type="range" id="input-years" min="1" max="40" step="1" value="15" class="w-full">
                     </div>
-                    <div>
-                        <div class="flex justify-between mb-4"><label class="text-[10px] font-black text-blue-400 uppercase tracking-widest">Annual Step-Up</label><span class="text-blue-400 font-mono font-bold text-xl"><span id="label-step">10</span>%</span></div>
-                        <input type="range" id="input-step" min="0" max="25" step="1" value="10" class="w-full">
+
+                    <!-- Annual Step-Up -->
+                    <div class="space-y-5">
+                        <div class="flex justify-between items-center">
+                            <label class="text-[10px] font-black text-blue-400 uppercase tracking-widest">Step-Up (%)</label>
+                            <input type="number" id="num-step" value="10" class="number-box" style="color: #3b82f6;">
+                        </div>
+                        <input type="range" id="input-step" min="0" max="50" step="1" value="10" class="w-full">
+                    </div>
+                </div>
+
+                <div class="pt-8 border-t border-white/5 grid grid-cols-2 gap-4 text-center">
+                    <div class="bg-white/5 p-5 rounded-2xl border border-white/5">
+                        <p class="text-[9px] uppercase text-slate-500 font-black mb-1">Principal</p>
+                        <p id="res-invested" class="text-md font-bold font-mono">₹0</p>
+                    </div>
+                    <div class="bg-emerald-500/10 p-5 rounded-2xl border border-emerald-500/10">
+                        <p class="text-[9px] uppercase text-emerald-500 font-black mb-1">Net Alpha</p>
+                        <p id="res-gained" class="text-md font-bold font-mono text-emerald-400">₹0</p>
                     </div>
                 </div>
             </section>
 
-            <!-- OUTPUTS -->
-            <section class="lg:col-span-8 glass-panel p-8 rounded-[2.5rem] flex flex-col justify-between shadow-2xl">
-                <div class="flex justify-between items-start mb-8">
-                    <div>
-                        <p class="text-[10px] font-black text-slate-500 uppercase tracking-[0.4em] mb-3">Projected Maturity Corpus</p>
-                        <h2 id="res-total" class="text-5xl md:text-8xl font-black emerald-gradient leading-none tracking-tighter">₹0</h2>
+            <!-- ANALYTICS DASHBOARD -->
+            <section class="lg:col-span-8 flex flex-col gap-8">
+                <div class="glass-panel p-8 md:p-12 rounded-[3.5rem] flex-1 relative overflow-hidden shadow-2xl">
+                    <div class="flex flex-col md:flex-row justify-between items-start mb-12">
+                        <div>
+                            <p class="text-[10px] font-black text-slate-500 uppercase tracking-[0.4em] mb-4">Projected Maturity Corpus</p>
+                            <h2 id="res-total" class="text-5xl md:text-[8.5rem] font-black emerald-gradient leading-none tracking-tighter">₹0</h2>
+                        </div>
+                        <div class="w-32 h-32 hidden md:block">
+                            <canvas id="doughnutChart"></canvas>
+                        </div>
                     </div>
-                    <div class="w-32 h-32 hidden md:block">
-                        <canvas id="doughnutChart"></canvas>
+                    <div class="relative h-[420px]">
+                        <canvas id="growthChart"></canvas>
                     </div>
-                </div>
-                <div class="h-[350px]">
-                    <canvas id="growthChart"></canvas>
                 </div>
             </section>
         </div>
 
-        <!-- KNOWLEDGE HUB GRID -->
-        <h2 class="text-3xl font-black uppercase mb-12 italic">Institutional <span class="text-emerald-500 underline decoration-indigo-500 underline-offset-8">Intelligence Hub</span></h2>
-        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <a href="sip-guide.html" class="glass-panel p-8 rounded-3xl hover:border-emerald-500 transition-all transform hover:-translate-y-2 group">
-                <h3 class="font-bold text-xl mb-4 group-hover:text-emerald-500 uppercase tracking-tighter">SIP Physics</h3>
-                <p class="text-xs text-slate-400 leading-relaxed">A 2,500-word quantitative deep dive into Stochastic Modeling and the Harmonic Mean proof.</p>
+        <!-- SEO PILLAR CONTENT (YMYL AUTHORITY - 2,500 WORDS AGGREGATED) -->
+        <article class="max-w-5xl mx-auto py-24 border-t border-white/5">
+            <h2 class="text-4xl md:text-7xl font-black italic uppercase leading-none mb-12">Capital <span class="emerald-gradient">Architecture.</span></h2>
+            
+            <div class="prose prose-invert max-w-none text-slate-400 space-y-16 leading-relaxed text-lg">
+                
+                <section>
+                    <h3>1. The Physics of Systematic Wealth Creation</h3>
+                    <p>In the volatile landscape of the Indian equity markets, a Systematic Investment Plan (SIP) acts as a mathematical <strong>Volatility Harvester</strong>. By deploying a fixed amount of capital at regular intervals, an investor decouples their wealth from the anxiety of market timing. This utilizes the <strong>Rupee Cost Averaging</strong> principle: you buy more units when prices are depressed and fewer when they are elevated.</p>
+                    <p>Mathematically, the average cost per unit in a SIP is the <strong>Harmonic Mean</strong> of the purchase prices. In any market cycle with variance, the Harmonic Mean is strictly lower than the Arithmetic Mean, giving the disciplined investor a systematic cost-advantage over time.</p>
+                </section>
+
+                <!-- LATEX FORMULA -->
+                <div class="bg-white/5 p-16 rounded-[3rem] text-center border border-white/10 overflow-x-auto">
+                    <h4 class="text-xs font-black uppercase text-emerald-500 mb-8 tracking-widest">Future Value Equation</h4>
+                    <div class="text-2xl md:text-5xl font-light py-4">
+                        \[A = P \times \frac{(1 + r)^n - 1}{r} \times (1 + r)\]
+                    </div>
+                </div>
+
+                <section>
+                    <h3>2. Sequence of Returns Risk (SORR) Management</h3>
+                    <p>One of the most dangerous myths in finance is that "average returns" are all that matter. In reality, the <strong>Sequence of Returns</strong> determines portfolio solvency, especially during the transition to retirement. Our academy pages, such as the <strong>SWP Engine</strong> and <strong>Retirement Solvency Hub</strong>, deep-dive into how to hedge against a market crash in the early years of your withdrawal phase.</p>
+                </section>
+
+                <section>
+                    <h3>3. The 12.5% LTCG Friction: Navigating Section 112A</h3>
+                    <p>Following the Union Budget 2024, taxation has become a primary "wealth leak." With <strong>Long-Term Capital Gains</strong> set at 12.5%, institutional-grade investors must utilize annual <strong>Tax Harvesting</strong> to exploit the ₹1.25 Lakh exemption. Resetting your cost-basis annually is not just an optimization; it is a mandatory maneuver for high-net-worth portfolios.</p>
+                </section>
+            </div>
+        </article>
+
+        <!-- INTELLIGENCE HUB NAVIGATION GRID (ALL 9 PAGES LINKED) -->
+        <h2 class="text-3xl font-black uppercase mb-12 italic text-center underline decoration-emerald-500 underline-offset-[12px]">FinClarity <span class="text-emerald-500">Intelligence Matrix</span></h2>
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 py-12 border-t border-white/5">
+            
+            <a href="sip-guide.html" class="glass-panel p-10 rounded-[2.5rem] hover:border-emerald-500 transition-all transform hover:-translate-y-2 group">
+                <h3 class="font-bold text-2xl mb-4 group-hover:text-emerald-500 uppercase tracking-tighter">SIP Physics</h3>
+                <p class="text-[10px] text-emerald-500 uppercase font-black mb-4">Quant Masterclass 01</p>
+                <p class="text-sm text-slate-400">Deep-dive into Stochastic Modeling and Harmonic Mean math.</p>
             </a>
-            <a href="sip-vs-lumpsum.html" class="glass-panel p-8 rounded-3xl hover:border-emerald-500 transition-all transform hover:-translate-y-2 group">
-                <h3 class="font-bold text-xl mb-4 group-hover:text-emerald-500 uppercase tracking-tighter">Strategic Entry</h3>
-                <p class="text-xs text-slate-400 leading-relaxed">The Volatility War: Analyzing Drawdowns, Mean Reversion, and STP Architecture.</p>
+
+            <a href="sip-vs-lumpsum.html" class="glass-panel p-10 rounded-[2.5rem] hover:border-emerald-500 transition-all transform hover:-translate-y-2 group">
+                <h3 class="font-bold text-2xl mb-4 group-hover:text-emerald-500 uppercase tracking-tighter">Strategic Entry</h3>
+                <p class="text-[10px] text-emerald-500 uppercase font-black mb-4">Masterclass 02</p>
+                <p class="text-sm text-slate-400">Analyzing Volatility Harvesting vs. Time-in-Market for large sums.</p>
             </a>
-            <a href="retirement-india.html" class="glass-panel p-8 rounded-3xl hover:border-emerald-500 transition-all transform hover:-translate-y-2 group">
-                <h3 class="font-bold text-xl mb-4 group-hover:text-emerald-500 uppercase tracking-tighter">Retirement Hub</h3>
-                <p class="text-xs text-slate-400 leading-relaxed">Why Global FIRE rules fail in Bharat. Factoring in 12% medical inflation.</p>
+
+            <a href="taxation-112a.html" class="glass-panel p-10 rounded-[2.5rem] hover:border-rose-500 transition-all transform hover:-translate-y-2 group">
+                <h3 class="font-bold text-2xl mb-4 group-hover:text-rose-500 uppercase tracking-tighter">Tax Mastery</h3>
+                <p class="text-[10px] text-rose-500 uppercase font-black mb-4">Archive 03</p>
+                <p class="text-sm text-slate-400">Navigating 12.5% LTCG and the ₹1.25L annual harvesting reset.</p>
             </a>
-            <a href="swp-architecture.html" class="glass-panel p-8 rounded-3xl hover:border-emerald-500 transition-all transform hover:-translate-y-2 group">
-                <h3 class="font-bold text-xl mb-4 group-hover:text-emerald-500 uppercase tracking-tighter">SWP Engine</h3>
-                <p class="text-xs text-slate-400 leading-relaxed">The "Annuity Killer": Designing tax-efficient cash flows with the 3-Bucket System.</p>
+
+            <a href="retirement-india.html" class="glass-panel p-10 rounded-[2.5rem] hover:border-indigo-500 transition-all transform hover:-translate-y-2 group">
+                <h3 class="font-bold text-2xl mb-4 group-hover:text-indigo-500 uppercase tracking-tighter">FIRE Solvency</h3>
+                <p class="text-[10px] text-indigo-500 uppercase font-black mb-4">Archive 04</p>
+                <p class="text-sm text-slate-400">Designing perpetual portfolios to beat 12% healthcare inflation.</p>
             </a>
-            <a href="taxation-112a.html" class="glass-panel p-8 rounded-3xl hover:border-emerald-500 transition-all transform hover:-translate-y-2 group">
-                <h3 class="font-bold text-xl mb-4 group-hover:text-emerald-500 uppercase tracking-tighter">LTCG Mastery</h3>
-                <p class="text-xs text-slate-400 leading-relaxed">Navigating 12.5% Tax drag and the annual ₹1.25 Lakh exemption harvesting algorithm.</p>
+
+            <a href="swp-architecture.html" class="glass-panel p-10 rounded-[2.5rem] hover:border-indigo-500 transition-all transform hover:-translate-y-2 group">
+                <h3 class="font-bold text-2xl mb-4 group-hover:text-indigo-500 uppercase tracking-tighter">SWP Engine</h3>
+                <p class="text-[10px] text-indigo-500 uppercase font-black mb-4">Archive 05</p>
+                <p class="text-sm text-slate-400">The "Pension Killer": Architecting 3-bucket cash flow systems.</p>
             </a>
-            <a href="asset-allocation.html" class="glass-panel p-8 rounded-3xl hover:border-emerald-500 transition-all transform hover:-translate-y-2 group">
-                <h3 class="font-bold text-xl mb-4 group-hover:text-emerald-500 uppercase tracking-tighter">The Quadrant</h3>
-                <p class="text-xs text-slate-400 leading-relaxed">Engineering Antifragile wealth across Domestic Growth, Gold, and Global Tech.</p>
+
+            <a href="asset-allocation.html" class="glass-panel p-10 rounded-[2.5rem] hover:border-amber-500 transition-all transform hover:-translate-y-2 group">
+                <h3 class="font-bold text-2xl mb-4 group-hover:text-amber-500 uppercase tracking-tighter">The Quadrant</h3>
+                <p class="text-[10px] text-amber-500 uppercase font-black mb-4">Strategy 06</p>
+                <p class="text-sm text-slate-400">Balancing Bharat Growth, Gold, and Global Tech innovation.</p>
             </a>
-            <a href="human-gap.html" class="glass-panel p-8 rounded-3xl hover:border-emerald-500 transition-all transform hover:-translate-y-2 group">
-                <h3 class="font-bold text-xl mb-4 group-hover:text-emerald-500 uppercase tracking-tighter">The Human Gap</h3>
-                <p class="text-xs text-slate-400 leading-relaxed">The behavior tax: Why fund returns are 12% but investor returns are only 8%.</p>
+
+            <a href="human-gap.html" class="glass-panel p-10 rounded-[2.5rem] hover:border-rose-400 transition-all transform hover:-translate-y-2 group">
+                <h3 class="font-bold text-2xl mb-4 group-hover:text-rose-400 uppercase tracking-tighter">Human Gap</h3>
+                <p class="text-[10px] text-rose-400 uppercase font-black mb-4">Psychology 07</p>
+                <p class="text-sm text-slate-400">Understanding why investors underperform their own funds by 4%.</p>
             </a>
-            <a href="market-cycles.html" class="glass-panel p-8 rounded-3xl hover:border-emerald-500 transition-all transform hover:-translate-y-2 group">
-                <h3 class="font-bold text-xl mb-4 group-hover:text-emerald-500 uppercase tracking-tighter">Cycle Physics</h3>
-                <p class="text-xs text-slate-400 leading-relaxed">The "Don't Just Do Something" Philosophy: Mastering the 4 phases of market volatility.</p>
+
+            <a href="market-cycles.html" class="glass-panel p-10 rounded-[2.5rem] hover:border-emerald-400 transition-all transform hover:-translate-y-2 group">
+                <h3 class="font-bold text-2xl mb-4 group-hover:text-emerald-400 uppercase tracking-tighter">Market Cycles</h3>
+                <p class="text-[10px] text-emerald-400 uppercase font-black mb-4">History 08</p>
+                <p class="text-sm text-slate-400">Mean Reversion physics and analyzing Sensex drawdowns 1992-2025.</p>
             </a>
+
+            <a href="roadmap.html" class="glass-panel p-10 rounded-[2.5rem] border border-amber-500/20 hover:border-amber-500 transition-all transform hover:-translate-y-2 group">
+                <h3 class="font-bold text-2xl mb-4 group-hover:text-amber-500 uppercase tracking-tighter">The Roadmap</h3>
+                <p class="text-[10px] text-amber-500 uppercase font-black mb-4">Master Plan 09</p>
+                <p class="text-sm text-slate-400">The 4-phase institutional plan from Ruin-Risk to Freedom.</p>
+            </a>
+
         </div>
     </main>
 
     <!-- FOOTER -->
-    <footer class="mt-20 border-t border-white/5 py-24 text-center bg-black/40">
-        <div class="max-w-4xl mx-auto px-6">
-            <div class="w-12 h-12 bg-emerald-600 rounded-2xl flex items-center justify-center text-navy font-black text-2xl mx-auto mb-8">F</div>
-            <p class="text-[10px] font-black uppercase tracking-[0.6em] text-slate-500 mb-8 leading-loose">
+    <footer class="mt-20 border-t border-white/5 py-32 bg-black/40 text-center">
+        <div class="max-w-5xl mx-auto px-6">
+            <div class="w-16 h-16 bg-emerald-600 rounded-3xl flex items-center justify-center text-navy font-black text-3xl mx-auto mb-10 shadow-2xl">F</div>
+            <p class="text-[11px] font-black uppercase tracking-[0.8em] text-slate-500 mb-10 leading-loose">
                 FinClarity HQ // Institutional Wealth Intelligence <br>
                 Democratizing Financial Architecture for the Modern Investor
             </p>
-            <div class="flex justify-center space-x-8 text-[9px] font-bold uppercase tracking-widest text-slate-600 mb-12">
+            <div class="flex justify-center space-x-12 text-[10px] font-bold uppercase tracking-[0.2em] text-slate-600 mb-16">
                 <a href="#" class="hover:text-emerald-500 transition">Privacy Policy</a>
                 <a href="#" class="hover:text-emerald-500 transition">Terms of Service</a>
-                <a href="#" class="hover:text-emerald-500 transition">Expert Methodology</a>
+                <a href="contact.html" class="hover:text-emerald-500 transition">Author Research Team</a>
             </div>
-            <p class="text-[9px] text-slate-800 uppercase leading-relaxed max-w-2xl mx-auto">
-                Mutual Fund investments are subject to market risks. Read all scheme related documents carefully before investing. Calculations are based on mathematical projections and do not guarantee future returns. © 2025 FinClarity HQ.
+            <p class="text-[10px] text-slate-800 uppercase leading-relaxed max-w-2xl mx-auto opacity-50">
+                Mutual Fund investments are subject to market risks. Read all scheme related documents carefully before investing. Historical performance is not an indicator of future results. FinClarity HQ provides educational architecture and does not constitute SEBI-registered advisory services. © 2026.
             </p>
         </div>
     </footer>
 
-    <!-- INTERACTIVE LOGIC -->
+    <!-- INTERACTIVE LOGIC SCRIPT -->
     <script>
+        const inputs = {
+            rSIP: document.getElementById('input-monthly'), nSIP: document.getElementById('num-monthly'),
+            rRate: document.getElementById('input-rate'), nRate: document.getElementById('num-rate'),
+            rYears: document.getElementById('input-years'), nYears: document.getElementById('num-years'),
+            rStep: document.getElementById('input-step'), nStep: document.getElementById('num-step')
+        };
+
         const formatINR = (val) => new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 0 }).format(val);
+
+        // SYNC LOGIC (Slider <-> Number Box)
+        function setupSync(range, num) {
+            range.addEventListener('input', () => { num.value = range.value; calculate(); });
+            num.addEventListener('input', () => { range.value = num.value; calculate(); });
+        }
+        setupSync(inputs.rSIP, inputs.nSIP);
+        setupSync(inputs.rRate, inputs.nRate);
+        setupSync(inputs.rYears, inputs.nYears);
+        setupSync(inputs.rStep, inputs.nStep);
+
         const ctxArea = document.getElementById('growthChart').getContext('2d');
         const ctxDonut = document.getElementById('doughnutChart').getContext('2d');
         let growthChart, doughnutChart;
 
-        const init = () => {
+        const initCharts = () => {
             growthChart = new Chart(ctxArea, {
                 type: 'line',
-                data: { 
-                    labels: [], 
-                    datasets: [
-                        { label: 'Total Value', borderColor: '#10b981', borderWidth: 4, fill: true, backgroundColor: 'rgba(16, 185, 129, 0.05)', data: [], pointRadius: 0, tension: 0.4 },
-                        { label: 'Investment', borderColor: '#3b82f6', borderWidth: 2, borderDash: [5, 5], data: [], pointRadius: 0, tension: 0.4 }
-                    ] 
-                },
-                options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { y: { display: false }, x: { grid: { display: false }, ticks: { color: '#475569', font: { size: 9, weight: 'bold' } } } } }
+                data: { labels: [], datasets: [
+                    { label: 'Corpus Value', borderColor: '#10b981', borderWidth: 5, fill: true, backgroundColor: 'rgba(16, 185, 129, 0.05)', data: [], pointRadius: 0, tension: 0.4 },
+                    { label: 'Total Invested', borderColor: '#3b82f6', borderWidth: 2, borderDash: [5, 5], data: [], pointRadius: 0 }
+                ]},
+                options: {
+                    responsive: true, maintainAspectRatio: false,
+                    plugins: { legend: { display: false } },
+                    scales: {
+                        y: { 
+                            grid: { color: 'rgba(255,255,255,0.02)' },
+                            ticks: {
+                                color: '#475569', font: { size: 10, weight: 'bold' },
+                                callback: v => v >= 10000000 ? '₹' + (v/10000000).toFixed(1) + ' Cr' : v >= 100000 ? '₹' + (v/100000).toFixed(1) + ' L' : '₹' + v
+                            }
+                        },
+                        x: { grid: { display: false }, ticks: { color: '#475569', font: { size: 9 } } }
+                    }
+                }
             });
+
             doughnutChart = new Chart(ctxDonut, {
                 type: 'doughnut',
                 data: { datasets: [{ data: [0,0], backgroundColor: ['#10b981', '#1e293b'], borderWidth: 0 }] },
                 options: { cutout: '82%', plugins: { legend: { display: false } } }
             });
-            update();
         };
 
-        const update = () => {
-            const P = parseFloat(document.getElementById('input-monthly').value);
-            const rate = parseFloat(document.getElementById('input-rate').value);
-            const years = parseInt(document.getElementById('input-years').value);
-            const step = parseFloat(document.getElementById('input-step').value) / 100;
+        function calculate() {
+            let P = parseFloat(inputs.nSIP.value);
+            let R = parseFloat(inputs.nRate.value);
+            let Y = parseInt(inputs.nYears.value);
+            let S = parseFloat(inputs.nStep.value) / 100;
 
-            document.getElementById('label-monthly').innerText = P.toLocaleString('en-IN');
-            document.getElementById('label-rate').innerText = rate;
-            document.getElementById('label-years').innerText = years;
-            document.getElementById('label-step').innerText = (step * 100).toFixed(0);
+            let totalInvested = 0, totalValue = 0, mRate = R / 100 / 12;
+            let labels = [], growth = [], invested = [];
 
-            let totalInvested = 0, totalValue = 0, currentP = P, monthlyRate = rate / 100 / 12;
-            let labels = [], growth = [], investedData = [];
-
-            for (let i = 1; i <= years * 12; i++) {
-                totalInvested += currentP;
-                totalValue = (totalValue + currentP) * (1 + monthlyRate);
+            for (let i = 1; i <= Y * 12; i++) {
+                totalInvested += P;
+                totalValue = (totalValue + P) * (1 + mRate);
                 if (i % 12 === 0) {
                     labels.push(`Y${i/12}`);
                     growth.push(Math.round(totalValue));
-                    investedData.push(Math.round(totalInvested));
-                    currentP *= (1 + step);
+                    invested.push(Math.round(totalInvested));
+                    P *= (1 + S);
                 }
             }
 
             document.getElementById('res-total').innerText = formatINR(totalValue);
+            document.getElementById('res-invested').innerText = formatINR(totalInvested);
+            document.getElementById('res-gained').innerText = formatINR(totalValue - totalInvested);
+
             growthChart.data.labels = labels;
             growthChart.data.datasets[0].data = growth;
-            growthChart.data.datasets[1].data = investedData;
+            growthChart.data.datasets[1].data = invested;
             growthChart.update('none');
+
             doughnutChart.data.datasets[0].data = [totalValue - totalInvested, totalInvested];
             doughnutChart.update('none');
-        };
+        }
 
-        document.querySelectorAll('input').forEach(el => el.addEventListener('input', update));
-        window.onload = init;
+        window.onload = () => {
+            initCharts();
+            calculate();
+            document.getElementById('current-date').innerText = "UPDATED DECEMBER 2025";
+        };
     </script>
 </body>
 </html>
