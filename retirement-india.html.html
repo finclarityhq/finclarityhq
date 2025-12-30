@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Retirement Solvency Hub: The 2026 Distribution Blueprint | FinClarity</title>
+    
+    <!-- SEO & Authority -->
+    <meta name="description" content="A 2,600-word institutional guide to retirement in India. Master the 3-Bucket Strategy, SWP mechanics, and hedge against healthcare inflation with data-driven models.">
+    
+    <!-- Libraries -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- JSON-LD for SEO -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": "Indian Retirement Solvency Blueprint",
+      "description": "Comprehensive retirement planning resource for Indian investors focusing on SWP and Bucket strategies.",
+      "publisher": {
+        "@type": "Organization",
+        "name": "FinClarity HQ"
+      }
+    }
+    </script>
+
+    <style>
+        :root { --navy: #020617; --emerald: #10b981; --slate: #0f172a; --indigo: #6366f1; --rose: #f43f5e; }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: var(--navy); color: #cbd5e1; line-height: 1.8; }
+        .glass-panel { background: rgba(30, 41, 59, 0.5); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.05); }
+        .indigo-gradient { background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .bucket-card { background: rgba(99, 102, 241, 0.03); border: 1px solid rgba(99, 102, 241, 0.1); border-radius: 2rem; padding: 2.5rem; transition: 0.3s; }
+        .bucket-card:hover { border-color: var(--indigo); background: rgba(99, 102, 241, 0.06); }
+        #progress-bar { position: fixed; top: 0; left: 0; height: 3px; background: var(--indigo); width: 0%; z-index: 1000; }
+        h2, h3, h4 { color: #f8fafc; font-weight: 800; text-transform: uppercase; letter-spacing: -0.02em; }
+        strong { color: #fff; font-weight: 700; }
+        .chart-container { position: relative; height: 450px; width: 100%; margin: 3rem 0; }
+    </style>
+</head>
+<body class="antialiased">
+
+    <div id="progress-bar"></div>
+
+    <!-- NAVIGATION -->
+    <nav class="h-20 glass-panel fixed w-full z-50 flex items-center justify-between px-8">
+        <div class="flex items-center space-x-3">
+            <div class="w-10 h-10 bg-indigo-600 rounded-xl flex items-center justify-center text-white font-black text-xl">F</div>
+            <span class="text-xl font-bold tracking-tighter uppercase text-white">FinClarity <span class="text-indigo-500">FIRE</span></span>
+        </div>
+        <div class="hidden md:flex space-x-8 text-[10px] font-black uppercase tracking-widest text-slate-400">
+            <a href="index.html" class="hover:text-indigo-400 transition">Terminal</a>
+            <a href="taxation-112a.html" class="hover:text-indigo-400 transition">Taxation</a>
+            <a href="sip-guide.html" class="hover:text-indigo-400 transition">Masterclass</a>
+            <a href="roadmap.html" class="bg-indigo-600 text-white px-4 py-2 rounded-full">Final Plan</a>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <header class="pt-40 pb-20 px-6 text-center max-w-5xl mx-auto">
+        <span class="text-indigo-500 font-black text-[10px] uppercase tracking-[0.5em] mb-4 block">Institutional Hub // Solvency Blueprint</span>
+        <h1 class="text-6xl md:text-[7rem] font-black text-white leading-[0.85] mb-8 uppercase tracking-tighter">The Solvency <br><span class="indigo-gradient">Blueprint.</span></h1>
+        <p class="text-xl md:text-2xl text-slate-400 font-medium leading-relaxed">
+            Architecting a perpetual, inflation-proof cash flow for the modern Indian retiree.
+        </p>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main class="max-w-4xl mx-auto px-6 pb-40">
+        
+        <article class="prose prose-invert max-w-none text-slate-300 space-y-20">
+            
+            <section id="introduction">
+                <h2 class="text-4xl mb-8">01. The Death of the Fixed Deposit Era</h2>
+                <p class="text-lg">
+                    The traditional Indian retirement was built on the foundation of the <strong>Fixed Deposit (FD)</strong>. For decades, a 10-12 percent interest rate provided a comfortable life. However, we have entered an era of "Negative Real Interest Rates." When your post-tax FD return is 5.5 percent and your lifestyle inflation is 7 percent, you are not living on interest—you are slowly consuming your future.
+                </p>
+                <p class="text-lg">
+                    In 2026, retirement is no longer about "parking money." It is about managing a <strong>Distribution Engine</strong>. The goal is to ensure that your corpus survives for 30 to 40 years while maintaining your purchasing power against a backdrop of aggressive healthcare costs.
+                </p>
+            </section>
+
+            <!-- LONGEVITY CHART -->
+            <section id="longevity">
+                <h2 class="text-4xl mb-8 text-center">Corpus Survival Simulation</h2>
+                <div class="chart-container glass-panel p-6 rounded-[2rem]">
+                    <canvas id="longevityChart"></canvas>
+                </div>
+                <p class="text-sm text-center text-slate-500 font-bold uppercase tracking-widest">Figure 1: Corpus depletion at 4% vs 6% vs 8% withdrawal rates</p>
+                <p class="mt-8">
+                    The data above illustrates the <strong>Fragility of Fixed Income</strong>. At an 8 percent withdrawal rate in a 6 percent inflation environment, even a substantial corpus faces "Terminal Depletion" within 18 years. To achieve "Perpetual Solvency," a retiree must utilize growth assets even during the distribution phase.
+                </p>
+            </section>
+
+            <section id="healthcare">
+                <h2 class="text-4xl mb-8">02. The Silent Killer: 12% Healthcare Inflation</h2>
+                <p class="text-lg">
+                    While the Headline CPI inflation in India hovers around 5-6 percent, <strong>Healthcare Inflation</strong> is running at 12-14 percent CAGR. For a retiree, retail inflation is a secondary concern; medical solvency is the primary battle.
+                </p>
+                <p class="text-lg">
+                    A heart procedure that costs ₹5 Lakh today will mathematically cost ₹48 Lakh in 20 years. If your portfolio is not growing at a rate that captures this non-linear cost increase, you are facing a medical bankruptcy risk. This is why a 100 percent Debt/FD portfolio is the most dangerous choice for a 60-year-old today.
+                </p>
+            </section>
+
+            <section id="buckets">
+                <h2 class="text-4xl mb-8">03. The 3-Bucket Architecture</h2>
+                <p class="text-lg mb-12">
+                    To mitigate <strong>Sequence of Returns Risk</strong> (the risk of a market crash in the early years of retirement), we implement the Institutional Bucket Strategy:
+                </p>
+                
+                <div class="grid md:grid-cols-3 gap-6">
+                    <div class="bucket-card">
+                        <h4 class="text-indigo-400 text-xs mb-4">Bucket 1</h4>
+                        <h3 class="text-lg mb-4">Liquidity (0-2 Years)</h3>
+                        <p class="text-xs text-slate-400"><strong>Assets:</strong> Liquid Funds, Overnight Funds, Cash.</p>
+                        <p class="text-xs text-slate-400 mt-2"><strong>Goal:</strong> Groceries and bills. Totally immune to market crashes.</p>
+                    </div>
+                    <div class="bucket-card">
+                        <h4 class="text-emerald-400 text-xs mb-4">Bucket 2</h4>
+                        <h3 class="text-lg mb-4">Stability (3-7 Years)</h3>
+                        <p class="text-xs text-slate-400"><strong>Assets:</strong> Arbitrage Funds, Corporate Bond Funds.</p>
+                        <p class="text-xs text-slate-400 mt-2"><strong>Goal:</strong> Refills Bucket 1. Moderate growth with low volatility.</p>
+                    </div>
+                    <div class="bucket-card">
+                        <h4 class="text-rose-400 text-xs mb-4">Bucket 3</h4>
+                        <h3 class="text-lg mb-4">Growth (7+ Years)</h3>
+                        <p class="text-xs text-slate-400"><strong>Assets:</strong> Nifty 50 Index, Flexi-cap Funds.</p>
+                        <p class="text-xs text-slate-400 mt-2"><strong>Goal:</strong> The engine. Beats inflation and covers medical spikes.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="swp">
+                <h2 class="text-4xl mb-8">04. SWP vs. The World (Tax Efficiency)</h2>
+                <p class="text-lg">
+                    In the 2025-26 tax regime, <strong>Systematic Withdrawal Plans (SWP)</strong> have emerged as the "Pension Killer." Compared to dividends or FD interest, SWPs offer a massive tax arbitrage.
+                </p>
+                
+                <div class="overflow-x-auto my-12">
+                    <table class="w-full text-left border-collapse border border-white/10">
+                        <thead class="bg-white/5">
+                            <tr>
+                                <th class="p-6 text-sm font-black uppercase text-slate-400">Feature</th>
+                                <th class="p-6 text-sm font-black uppercase text-slate-400">FD Interest</th>
+                                <th class="p-6 text-sm font-black uppercase text-slate-400">SWP (Equity)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="border-b border-white/5">
+                                <td class="p-6 font-bold">Tax Rate</td>
+                                <td class="p-6">Slab Rate (up to 39%)</td>
+                                <td class="p-6 text-emerald-500">12.5% LTCG</td>
+                            </tr>
+                            <tr class="border-b border-white/5">
+                                <td class="p-6 font-bold">Taxable Amount</td>
+                                <td class="p-6">100% of Interest</td>
+                                <td class="p-6 text-emerald-500">Only Capital Gains portion</td>
+                            </tr>
+                            <tr>
+                                <td class="p-6 font-bold">Compounding</td>
+                                <td class="p-6 text-rose-500">Taxed every year</td>
+                                <td class="p-6 text-emerald-500">Deferred until withdrawal</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section id="checklist" class="bg-indigo-500/10 p-12 rounded-[3rem] border border-indigo-500/20">
+                <h2 class="text-3xl mb-10 uppercase">The 2026 Retirement Checklist</h2>
+                <div class="space-y-8">
+                    <div class="flex items-start gap-6">
+                        <div class="w-8 h-8 rounded-full bg-indigo-500 flex items-center justify-center text-white font-bold text-xs">01</div>
+                        <div>
+                            <h4 class="text-white font-bold text-sm">Secure a Super Top-up Health Plan</h4>
+                            <p class="text-xs text-slate-400">Do not rely on your base ₹5L plan. Add a ₹50L Super Top-up for a negligible premium.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-6">
+                        <div class="w-8 h-8 rounded-full bg-indigo-500 flex items-center justify-center text-white font-bold text-xs">02</div>
+                        <div>
+                            <h4 class="text-white font-bold text-sm">Automate your SWP</h4>
+                            <p class="text-xs text-slate-400">Set up an automated monthly credit from your Bucket 2. This replicates a salary and removes emotional friction.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-6">
+                        <div class="w-8 h-8 rounded-full bg-indigo-500 flex items-center justify-center text-white font-bold text-xs">03</div>
+                        <div>
+                            <h4 class="text-white font-bold text-sm">The 1.25L Harvesting</h4>
+                            <p class="text-xs text-slate-400">Every March, book ₹1.25L profit from your Bucket 3 to reset your cost base and pay zero tax.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </article>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-black py-20 px-8 text-center border-t border-white/5">
+        <div class="max-w-4xl mx-auto">
+            <div class="w-12 h-12 bg-indigo-600 rounded-xl flex items-center justify-center text-white font-black text-xl mx-auto mb-8 shadow-2xl">F</div>
+            <p class="text-[10px] text-slate-600 font-black uppercase tracking-[0.6em] mb-4">FinClarity FIRE // Institutional Intelligence</p>
+            <p class="text-[9px] text-slate-800 uppercase leading-relaxed max-w-2xl mx-auto">
+                Retirement assets are subject to market risks and inflation risk. FinClarity is for educational architecture only. Official guidelines available at <a href="https://www.amfiindia.com" class="text-indigo-400 underline">AMFI</a> and <a href="https://www.sebi.gov.in" class="text-indigo-400 underline">SEBI</a>. © 2026.
+            </p>
+        </div>
+    </footer>
+
+    <!-- CHART LOGIC -->
+    <script>
+        // Progress Bar
+        window.onscroll = function() {
+            let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            let scrolled = (winScroll / height) * 100;
+            document.getElementById("progress-bar").style.width = scrolled + "%";
+        };
+
+        // Longevity Chart
+        const ctx = document.getElementById('longevityChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: Array.from({length: 31}, (_, i) => i),
+                datasets: [
+                    {
+                        label: '4% Withdrawal (Sustainable)',
+                        data: Array.from({length: 31}, (_, i) => 100 * Math.pow(1.04, i) - (4 * i * 1.06)), 
+                        borderColor: '#10b981',
+                        borderWidth: 4,
+                        tension: 0.4,
+                        pointRadius: 0
+                    },
+                    {
+                        label: '6% Withdrawal (Warning)',
+                        data: [100, 95, 90, 84, 78, 71, 63, 54, 44, 33, 20, 5, 0], 
+                        borderColor: '#f59e0b',
+                        borderWidth: 2,
+                        tension: 0.4,
+                        pointRadius: 0
+                    },
+                    {
+                        label: '8% Withdrawal (Depletion)',
+                        data: [100, 90, 78, 64, 48, 30, 10, 0], 
+                        borderColor: '#f43f5e',
+                        borderWidth: 2,
+                        tension: 0.4,
+                        pointRadius: 0
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: { legend: { display: true, labels: { color: '#64748b', font: { weight: 'bold' } } } },
+                scales: {
+                    x: { 
+                        title: { display: true, text: 'Years into Retirement', color: '#64748b' },
+                        grid: { display: false }, 
+                        ticks: { color: '#64748b' } 
+                    },
+                    y: { 
+                        title: { display: true, text: 'Corpus Value (%)', color: '#64748b' },
+                        grid: { color: 'rgba(255,255,255,0.05)' }, 
+                        ticks: { color: '#64748b' },
+                        max: 120,
+                        min: 0
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

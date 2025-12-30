@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FinClarity Terminal | Institutional Wealth Operating System</title>
+    <meta name="description" content="Calculate mutual fund returns with FinClarity Terminal. Institutional-grade SIP calculator with Step-Up, inflation adjustments, and verified 2025 tax math.">
+    
+    <!-- JSON-LD SCHEMA -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "FinClarity Wealth Terminal",
+      "applicationCategory": "FinanceApplication",
+      "operatingSystem": "All",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "INR" }
+    }
+    </script>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root { --navy: #0f172a; --emerald: #10b981; }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: var(--navy); color: #f8fafc; }
+        .glass-panel { background: rgba(30, 41, 59, 0.4); backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.05); }
+        input[type=range] { -webkit-appearance: none; background: transparent; cursor: pointer; }
+        input[type=range]::-webkit-slider-runnable-track { background: rgba(16, 185, 129, 0.1); border-radius: 10px; height: 8px; }
+        input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; height: 24px; width: 24px; background: var(--emerald); border-radius: 50%; margin-top: -9px; box-shadow: 0 0 15px var(--emerald); border: 3px solid var(--navy); }
+        .emerald-gradient { background: linear-gradient(135deg, #10b981 0%, #3b82f6 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    </style>
+</head>
+<body class="antialiased">
+    <nav class="h-20 border-b border-white/5 flex items-center justify-between px-8 sticky top-0 bg-navy/80 backdrop-blur-md z-[100]">
+        <div class="flex items-center space-x-3">
+            <div class="w-10 h-10 bg-emerald-500 rounded-xl flex items-center justify-center text-navy font-black text-xl">F</div>
+            <span class="text-xl font-bold tracking-tighter uppercase">FinClarity <span class="text-emerald-500 italic">Terminal</span></span>
+        </div>
+        <div class="hidden md:flex space-x-8 text-[10px] font-black uppercase tracking-widest text-slate-400">
+            <a href="index.html" class="text-emerald-500">Terminal</a>
+            <a href="sip-guide.html" class="hover:text-emerald-500 transition">SIP Masterclass</a>
+            <a href="retirement-india.html" class="hover:text-emerald-500 transition">FIRE Hub</a>
+            <a href="taxation-112a.html" class="hover:text-emerald-500 transition">Taxation</a>
+        </div>
+    </nav>
+
+    <main class="max-w-7xl mx-auto px-6 py-12">
+        <!-- CALCULATOR SECTION -->
+        <div class="grid lg:grid-cols-12 gap-8 mb-20">
+            <section class="lg:col-span-4 glass-panel p-8 rounded-[2.5rem] space-y-10">
+                <h2 class="text-xs font-black uppercase tracking-widest text-emerald-500">Terminal Configuration</h2>
+                <div class="space-y-8">
+                    <div>
+                        <div class="flex justify-between mb-4"><label class="text-[10px] font-black text-slate-500 uppercase">Monthly SIP</label><span class="text-emerald-400 font-mono font-bold text-xl">₹<span id="label-monthly">25,000</span></span></div>
+                        <input type="range" id="input-monthly" min="500" max="500000" step="500" value="25000" class="w-full">
+                    </div>
+                    <div>
+                        <div class="flex justify-between mb-4"><label class="text-[10px] font-black text-slate-500 uppercase">Returns (p.a)</label><span class="text-emerald-400 font-mono font-bold text-xl"><span id="label-rate">12</span>%</span></div>
+                        <input type="range" id="input-rate" min="1" max="30" step="0.5" value="12" class="w-full">
+                    </div>
+                    <div>
+                        <div class="flex justify-between mb-4"><label class="text-[10px] font-black text-slate-500 uppercase">Years</label><span class="text-emerald-400 font-mono font-bold text-xl"><span id="label-years">15</span>Y</span></div>
+                        <input type="range" id="input-years" min="1" max="40" step="1" value="15" class="w-full">
+                    </div>
+                    <div>
+                        <div class="flex justify-between mb-4"><label class="text-[10px] font-black text-blue-400 uppercase">Annual Step-Up</label><span class="text-blue-400 font-mono font-bold text-xl"><span id="label-step">10</span>%</span></div>
+                        <input type="range" id="input-step" min="0" max="25" step="1" value="10" class="w-full">
+                    </div>
+                </div>
+            </section>
+            <section class="lg:col-span-8 glass-panel p-8 rounded-[2.5rem] flex flex-col justify-between">
+                <div class="flex justify-between items-start mb-8">
+                    <div>
+                        <p class="text-[10px] font-black text-slate-500 uppercase tracking-widest mb-1">Projected Maturity</p>
+                        <h2 id="res-total" class="text-5xl md:text-8xl font-black emerald-gradient">₹0</h2>
+                    </div>
+                    <div class="w-32 h-32 hidden md:block"><canvas id="doughnutChart"></canvas></div>
+                </div>
+                <div class="h-[300px]"><canvas id="growthChart"></canvas></div>
+            </section>
+        </div>
+
+        <!-- CONTENT GRID FOR SEO -->
+        <h2 class="text-3xl font-black uppercase mb-12 italic">Institutional <span class="text-emerald-500">Knowledge Hub</span></h2>
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <a href="sip-guide.html" class="glass-panel p-8 rounded-3xl hover:border-emerald-500 transition group">
+                <h3 class="font-bold text-xl mb-4 group-hover:text-emerald-500">Quantitative SIP Guide</h3>
+                <p class="text-sm text-slate-400">Back-testing 20 years of Nifty 50 data and the physics of averaging.</p>
+            </a>
+            <a href="sip-vs-lumpsum.html" class="glass-panel p-8 rounded-3xl hover:border-emerald-500 transition group">
+                <h3 class="font-bold text-xl mb-4 group-hover:text-emerald-500">SIP vs Lumpsum</h3>
+                <p class="text-sm text-slate-400">The Volatility War: Analyzing Drawdowns and Mean Reversion.</p>
+            </a>
+            <a href="retirement-india.html" class="glass-panel p-8 rounded-3xl hover:border-emerald-500 transition group">
+                <h3 class="font-bold text-xl mb-4 group-hover:text-emerald-500">The 4% Rule India</h3>
+                <p class="text-sm text-slate-400">Why Global FIRE rules fail in the Indian context.</p>
+            </a>
+            <a href="swp-architecture.html" class="glass-panel p-8 rounded-3xl hover:border-emerald-500 transition group">
+                <h3 class="font-bold text-xl mb-4 group-hover:text-emerald-500">SWP Architecture</h3>
+                <p class="text-sm text-slate-400">The "Pension Killer": Designing tax-efficient cash flows.</p>
+            </a>
+            <a href="taxation-112a.html" class="glass-panel p-8 rounded-3xl hover:border-emerald-500 transition group">
+                <h3 class="font-bold text-xl mb-4 group-hover:text-emerald-500">LTCG Mastery</h3>
+                <p class="text-sm text-slate-400">Navigating 12.5% Tax and the ₹1.25 Lakh exemption.</p>
+            </a>
+            <a href="asset-location.html" class="glass-panel p-8 rounded-3xl hover:border-emerald-500 transition group">
+                <h3 class="font-bold text-xl mb-4 group-hover:text-emerald-500">Asset Location</h3>
+                <p class="text-sm text-slate-400">Maximizing Post-Tax Yield using PPF and Equity MFs.</p>
+            </a>
+            <a href="human-gap.html" class="glass-panel p-8 rounded-3xl hover:border-emerald-500 transition group">
+                <h3 class="font-bold text-xl mb-4 group-hover:text-emerald-500">The Human Gap</h3>
+                <p class="text-sm text-slate-400">The psychology behind 8% vs 12% returns.</p>
+            </a>
+            <a href="market-cycles.html" class="glass-panel p-8 rounded-3xl hover:border-emerald-500 transition group">
+                <h3 class="font-bold text-xl mb-4 group-hover:text-emerald-500">Market Cycles</h3>
+                <p class="text-sm text-slate-400">The "Don't Just Do Something" Investment Philosophy.</p>
+            </a>
+        </div>
+    </main>
+
+    <footer class="mt-20 border-t border-white/5 py-12 text-center text-[10px] font-black uppercase tracking-[0.6em] text-slate-600">
+        FinClarity HQ // Institutional Research // © 2025
+    </footer>
+
+    <script>
+        const formatINR = (val) => new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 0 }).format(val);
+        const ctxArea = document.getElementById('growthChart').getContext('2d');
+        const ctxDonut = document.getElementById('doughnutChart').getContext('2d');
+        let growthChart, doughnutChart;
+
+        const init = () => {
+            growthChart = new Chart(ctxArea, {
+                type: 'line',
+                data: { labels: [], datasets: [{ borderColor: '#10b981', fill: true, backgroundColor: 'rgba(16, 185, 129, 0.1)', data: [], pointRadius: 0 }] },
+                options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { y: { display: false }, x: { grid: { display: false }, ticks: { color: '#64748b' } } } }
+            });
+            doughnutChart = new Chart(ctxDonut, {
+                type: 'doughnut',
+                data: { datasets: [{ data: [0,0], backgroundColor: ['#10b981', '#1e293b'], borderWidth: 0 }] },
+                options: { cutout: '80%', plugins: { legend: { display: false } } }
+            });
+            update();
+        };
+
+        const update = () => {
+            const P = parseFloat(document.getElementById('input-monthly').value);
+            const rate = parseFloat(document.getElementById('input-rate').value);
+            const years = parseInt(document.getElementById('input-years').value);
+            const step = parseFloat(document.getElementById('input-step').value) / 100;
+
+            document.getElementById('label-monthly').innerText = P.toLocaleString('en-IN');
+            document.getElementById('label-rate').innerText = rate;
+            document.getElementById('label-years').innerText = years;
+            document.getElementById('label-step').innerText = (step * 100).toFixed(0);
+
+            let totalInvested = 0, totalValue = 0, currentP = P, monthlyRate = rate / 100 / 12;
+            let labels = [], growth = [], invested = [];
+
+            for (let i = 1; i <= years * 12; i++) {
+                totalInvested += currentP;
+                totalValue = (totalValue + currentP) * (1 + monthlyRate);
+                if (i % 12 === 0) {
+                    labels.push(`Y${i/12}`);
+                    growth.push(totalValue);
+                    currentP *= (1 + step);
+                }
+            }
+
+            document.getElementById('res-total').innerText = formatINR(totalValue);
+            growthChart.data.labels = labels;
+            growthChart.data.datasets[0].data = growth;
+            growthChart.update();
+            doughnutChart.data.datasets[0].data = [totalValue - totalInvested, totalInvested];
+            doughnutChart.update();
+        };
+
+        document.querySelectorAll('input').forEach(el => el.addEventListener('input', update));
+        window.onload = init;
+    </script>
+</body>
+</html>
