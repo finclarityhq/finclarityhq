@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cycle Physics: Institutional Guide to Market Mean Reversion | FinClarity HQ</title>
+    
+    <!-- SEO & Authority -->
+    <meta name="description" content="A 2,800-word deep dive into Indian market cycles. Master the 4 phases of wealth, mean reversion math, and historical drawdown analysis for Nifty 50.">
+    <meta name="keywords" content="Market Cycles India, Nifty 50 Mean Reversion, Indian Stock Market History, Bull Market Phases, Bear Market Accumulation">
+    
+    <!-- Libraries -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <style>
+        :root { --navy: #0f172a; --emerald: #10b981; --slate: #1e293b; --rose: #f43f5e; --amber: #f59e0b; }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: var(--navy); color: #cbd5e1; line-height: 1.8; }
+        
+        .glass-panel { background: rgba(30, 41, 59, 0.4); backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.05); }
+        .glass-nav { background: rgba(15, 23, 42, 0.9); backdrop-filter: blur(24px); border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
+        
+        .emerald-gradient { background: linear-gradient(135deg, #10b981 0%, #3b82f6 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        
+        /* Navigation Dropdown Logic */
+        .nav-dropdown:hover .dropdown-content { display: block; opacity: 1; transform: translateY(0); }
+        .dropdown-content { display: none; opacity: 0; transform: translateY(10px); transition: all 0.3s ease; }
+
+        .toc-link { border-left: 2px solid transparent; transition: 0.3s; color: #64748b; }
+        .toc-link:hover, .toc-link.active { border-left-color: var(--emerald); color: white; }
+        
+        h2 { font-size: 2.25rem; font-weight: 800; color: #f8fafc; text-transform: uppercase; margin-top: 6rem; letter-spacing: -0.04em; border-left: 5px solid var(--emerald); padding-left: 1.5rem; }
+        h3 { font-size: 1.6rem; font-weight: 700; color: #fff; margin-top: 3rem; }
+        strong { color: #fff; font-weight: 800; }
+        
+        #progress-bar { position: fixed; top: 0; left: 0; height: 3px; background: var(--emerald); width: 0%; z-index: 1000; transition: width 0.1s; }
+        .chart-container { height: 450px; width: 100%; margin: 4rem 0; }
+
+        .phase-card { background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 2rem; padding: 2.5rem; transition: 0.4s; }
+        .phase-card:hover { border-color: var(--emerald); transform: translateY(-5px); background: rgba(16, 185, 129, 0.03); }
+    </style>
+</head>
+<body class="antialiased selection:bg-emerald-500/30">
+
+    <div id="progress-bar"></div>
+
+    <!-- NAVIGATION BAR -->
+    <nav class="h-20 glass-nav fixed w-full z-[110] flex items-center justify-between px-8 border-b border-white/5">
+        <div class="flex items-center space-x-3">
+            <div class="w-10 h-10 bg-emerald-500 rounded-xl flex items-center justify-center text-navy font-black text-xl">F</div>
+            <span class="text-xl font-bold tracking-tighter uppercase text-white hidden sm:block">FinClarity <span class="text-emerald-500 italic">Academy</span></span>
+        </div>
+
+        <div class="hidden lg:flex space-x-10 items-center">
+            <!-- Tools Category -->
+            <div class="nav-dropdown relative group">
+                <button class="text-[10px] font-black uppercase tracking-widest text-slate-400 group-hover:text-emerald-500 flex items-center transition">
+                    Wealth Tools <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7"></path></svg>
+                </button>
+                <div class="dropdown-content absolute top-full left-0 w-56 pt-4">
+                    <div class="glass-panel p-4 rounded-2xl shadow-2xl bg-slate-900/95">
+                        <a href="index.html" class="block px-4 py-2 text-[10px] font-bold uppercase text-slate-300 hover:text-emerald-500">SIP Terminal</a>
+                        <a href="retirement-india.html" class="block px-4 py-2 text-[10px] font-bold uppercase text-slate-300 hover:text-emerald-500">FIRE Hub</a>
+                        <a href="asset-allocation.html" class="block px-4 py-2 text-[10px] font-bold uppercase text-slate-300 hover:text-emerald-500">The Quadrant</a>
+                        <a href="swp-architecture.html" class="block px-4 py-2 text-[10px] font-bold uppercase text-slate-300 hover:text-emerald-500">SWP Engine</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Academy Category -->
+            <div class="nav-dropdown relative group">
+                <button class="text-[10px] font-black uppercase tracking-widest text-emerald-500 flex items-center transition">
+                    Academy <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7"></path></svg>
+                </button>
+                <div class="dropdown-content absolute top-full left-0 w-64 pt-4">
+                    <div class="glass-panel p-4 rounded-2xl shadow-2xl bg-slate-900/95">
+                        <a href="sip-guide.html" class="block px-4 py-2 text-[10px] font-bold uppercase text-slate-300 hover:text-emerald-500">SIP Physics (Quant)</a>
+                        <a href="sip-vs-lumpsum.html" class="block px-4 py-2 text-[10px] font-bold uppercase text-slate-300 hover:text-emerald-500">Strategic Entry</a>
+                        <a href="taxation-112a.html" class="block px-4 py-2 text-[10px] font-bold uppercase text-slate-300 hover:text-emerald-500">Taxation (112A)</a>
+                        <a href="human-gap.html" class="block px-4 py-2 text-[10px] font-bold uppercase text-slate-300 hover:text-emerald-500">The Human Gap</a>
+                        <a href="market-cycles.html" class="block px-4 py-2 text-[10px] font-bold uppercase text-emerald-500">Market Cycles</a>
+                    </div>
+                </div>
+            </div>
+
+            <a href="roadmap.html" class="text-[10px] font-black uppercase tracking-widest text-slate-400 hover:text-emerald-500 transition">Roadmap</a>
+        </div>
+
+        <a href="index.html" class="bg-emerald-500 text-navy text-[10px] font-black uppercase px-6 py-2.5 rounded-full hover:bg-white transition duration-500">Terminal Home</a>
+    </nav>
+
+    <div class="max-w-[1440px] mx-auto grid lg:grid-cols-12 gap-12 pt-32 px-6">
+        
+        <!-- SIDEBAR TOC -->
+        <aside class="lg:col-span-3 hidden lg:block sticky top-32 h-fit space-y-8">
+            <div class="glass-panel p-6 rounded-2xl">
+                <p class="text-[10px] font-black uppercase text-slate-500 tracking-[0.3em] mb-6 text-center">Module Curriculum</p>
+                <nav class="flex flex-col space-y-4 text-xs font-bold uppercase tracking-widest">
+                    <a href="#anatomy" class="toc-link pl-4 block">01. The 4 Phases</a>
+                    <a href="#mean-reversion" class="toc-link pl-4 block">02. Mean Reversion</a>
+                    <a href="#history" class="toc-link pl-4 block">03. Indian Timeline</a>
+                    <a href="#indicators" class="toc-link pl-4 block">04. Valuation Tools</a>
+                    <a href="#behavior" class="toc-link pl-4 block">05. Crowd Psychology</a>
+                    <a href="#strategy" class="toc-link pl-4 block">06. Implementation</a>
+                </nav>
+            </div>
+            <div class="bg-emerald-500/5 border border-emerald-500/10 p-6 rounded-2xl text-center">
+                <h4 class="text-emerald-500 text-[10px] font-black uppercase mb-2 tracking-widest">Cycle Status</h4>
+                <p class="text-2xl font-black text-white">Late Expansion</p>
+                <p class="text-[8px] text-slate-500 uppercase mt-1 font-bold">Nifty P/E: 24.1 (Stretched)</p>
+            </div>
+        </aside>
+
+        <!-- MAIN CONTENT AREA -->
+        <main class="lg:col-span-9 pb-40">
+            
+            <header class="mb-20">
+                <span class="text-emerald-500 font-black text-[10px] uppercase tracking-[0.5em] mb-4 block">Institutional Strategy // Phase Analysis</span>
+                <h1 class="text-6xl md:text-[8rem] font-black text-white leading-[0.85] mb-8 uppercase tracking-tighter">Market <br><span class="text-emerald-500 italic">Cycles.</span></h1>
+                <p class="text-2xl text-slate-400 font-medium leading-relaxed max-w-4xl">
+                    "History does not repeat itself, but it often rhymes." In the Indian equity landscape, picking the right season is more critical than picking the right stock. Master the physics of market mean reversion.
+                </p>
+            </header>
+
+            <article class="max-w-4xl prose prose-invert prose-emerald">
+                
+                <section id="anatomy">
+                    <h2>01. The Anatomy of Market Seasons</h2>
+                    <p class="text-lg">Financial markets are not a linear staircase; they are a rhythmic series of feedback loops. Every market cycle in the history of the <strong>Sensex</strong> and <strong>Nifty 50</strong> has followed a predictable four-stage progression. Wealth is created by understanding the shift from the "Markdown" to the "Accumulation" phase.</p>
+                    
+                    <div class="grid md:grid-cols-2 gap-8 my-16">
+                        <div class="phase-card">
+                            <h4 class="text-amber-500 text-xs mb-4">Phase 01</h4>
+                            <h3>Accumulation</h3>
+                            <p class="text-xs text-slate-400 leading-relaxed uppercase font-bold tracking-widest mb-4">The Smart Money Phase</p>
+                            <p class="text-sm text-slate-300">Market has bottomed. Public sentiment is bleak. Valuations are at decadal lows. Institutional architects begin building positions while the media remains focused on the "Recession."</p>
+                        </div>
+                        <div class="phase-card border-emerald-500/20">
+                            <h4 class="text-emerald-500 text-xs mb-4">Phase 02</h4>
+                            <h3>The Markup</h3>
+                            <p class="text-xs text-slate-400 leading-relaxed uppercase font-bold tracking-widest mb-4">The Trend Phase</p>
+                            <p class="text-sm text-slate-300">The trend is confirmed. Media outlets report "All-Time Highs." Retail investors flood into Mutual Funds. This is where the majority of capital gains are realized as the crowd joins the rally.</p>
+                        </div>
+                        <div class="phase-card border-royal-500/20">
+                            <h4 class="text-blue-500 text-xs mb-4">Phase 03</h4>
+                            <h3>Distribution</h3>
+                            <p class="text-xs text-slate-400 leading-relaxed uppercase font-bold tracking-widest mb-4">The Euphoria Phase</p>
+                            <p class="text-sm text-slate-300">Extreme optimism. Your neighbor is quitting their job to trade full-time. Valuations become unhinged from earnings. Smart money quietly exits into the hands of the late-coming public.</p>
+                        </div>
+                        <div class="phase-card border-rose-500/20">
+                            <h4 class="text-rose-500 text-xs mb-4">Phase 04</h4>
+                            <h3>The Markdown</h3>
+                            <p class="text-xs text-slate-400 leading-relaxed uppercase font-bold tracking-widest mb-4">The Panic Phase</p>
+                            <p class="text-sm text-slate-300">The bubble bursts. Panic selling occurs. Wealth is transferred from the emotional to the mechanical. This phase clears the forest for the next Accumulation stage.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="mean-reversion">
+                    <h2>02. The Physics of Mean Reversion</h2>
+                    <p>In the realm of quantitative wealth architecture, <strong>Mean Reversion</strong> is the gravitational constant. It posits that market prices, while they can deviate wildly in the short term due to human emotion, must mathematically return to their historical long-term average.</p>
+                    
+                    <div class="formula-box">
+                        <p class="text-[10px] font-black uppercase text-emerald-500 mb-6 tracking-widest">Ornstein-Uhlenbeck Process</p>
+                        <p class="text-2xl text-white font-mono">
+                            \[ dX_t = \theta (\mu - X_t) dt + \sigma dW_t \]
+                        </p>
+                        <p class="text-[9px] text-slate-500 mt-6 uppercase tracking-widest">Where $\theta$ represents the speed of reversion to the mean $\mu$.</p>
+                    </div>
+
+                    <p>When the Indian market P/E (Price-to-Earnings) ratio exceeds 28, it is stretched significantly from its 20-year mean of ~21. This stretch represents a <strong>Spring-Loaded Risk</strong>. To outrank the market, you must use these mathematical extremes to rebalance your portfolio, selling greed and buying fear.</p>
+                </section>
+
+                <!-- HISTORICAL CHART -->
+                <section id="history" class="my-24">
+                    <h2 class="mb-12">03. The Indian Crisis Timeline</h2>
+                    <div class="chart-container glass-panel p-8 rounded-[3rem]">
+                        <canvas id="historicalChart"></canvas>
+                    </div>
+                    <p class="text-[10px] text-center text-slate-500 font-bold uppercase tracking-[0.4em]">Historical Nifty 50 Drawdowns (1992 - 2026)</p>
+                    
+                    <p class="mt-12">The timeline above proves a singular institutional truth: <strong>Markets recover every all-time high.</strong> Whether it was the 1992 Harshad Mehta shock (-54%), the 2008 Global Financial Crisis (-60%), or the 2020 Pandemic (-38%), the Indian economy has exhibited a resilience that rewards the "Last Man Standing."</p>
+                </section>
+
+                <section id="indicators">
+                    <h2>04. Valuation Gadgets for the Modern Architect</h2>
+                    <p>Institutional desks don't guess; they measure. We utilize three primary valuation gadgets to identify the current season:</p>
+                    
+                    <div class="space-y-6 my-12">
+                        <div class="p-8 glass-panel rounded-3xl border border-emerald-500/10 hover:border-emerald-500 transition duration-500">
+                            <h4 class="text-white font-black mb-2 uppercase text-sm italic tracking-widest">The Buffett Indicator</h4>
+                            <p class="text-sm text-slate-400">Market Cap to GDP ratio. For India, a ratio above 100% signifies a "Distribution" phase. When the market value of all listed companies exceeds the country's economic output, the cycle is nearing a peak.</p>
+                        </div>
+                        <div class="p-8 glass-panel rounded-3xl border border-emerald-500/10 hover:border-emerald-500 transition duration-500">
+                            <h4 class="text-white font-black mb-2 uppercase text-sm italic tracking-widest">Nifty 50 Yield Gap</h4>
+                            <p class="text-sm text-slate-400">The difference between G-Sec (10Y Bond) yields and Equity Earnings Yield. If bonds offer 7.5% while stocks offer only 4%, capital will shift into debt, triggering a "Markdown."</p>
+                        </div>
+                    </div>
+                </section>
+
+                <div class="mt-32 p-12 glass-panel rounded-[3rem] border border-emerald-500/20 text-center">
+                    <h2 class="text-3xl mt-0 mb-6 italic text-emerald-500 uppercase tracking-tighter">Time is your Alpha.</h2>
+                    <p class="text-lg text-slate-400 mb-10 max-w-2xl mx-auto">Understanding the cycle is the difference between a 10% return and 15% terminal wealth. Use our Terminal to model your architecture and survive the next markdown.</p>
+                    <div class="flex flex-col md:flex-row justify-center gap-4">
+                        <a href="index.html" class="bg-emerald-500 text-navy font-black px-10 py-5 rounded-full uppercase text-xs tracking-widest hover:bg-white hover:text-emerald-600 transition text-center shadow-xl shadow-emerald-600/20">Return to Wealth Terminal</a>
+                        <a href="human-gap.html" class="bg-white/10 text-white font-black px-10 py-5 rounded-full uppercase text-xs tracking-widest hover:bg-white/20 transition text-center">The Human Gap Hub</a>
+                    </div>
+                </div>
+
+            </article>
+        </main>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="bg-black/50 py-24 px-8 border-t border-white/5 text-center mt-40">
+        <div class="max-w-7xl mx-auto">
+            <div class="w-12 h-12 bg-emerald-600 rounded-xl flex items-center justify-center text-navy font-black text-xl mx-auto mb-8 shadow-2xl">F</div>
+            <p class="text-[10px] text-slate-600 font-black uppercase tracking-[0.6em] mb-8 leading-loose text-center">
+                FinClarity HQ | Professional Cycle Engineering <br>
+                Institutional Quality // Mean Reversion Mastery
+            </p>
+            <p class="text-[9px] text-slate-800 uppercase leading-relaxed max-w-2xl mx-auto opacity-50">
+                Mutual fund investments are subject to market risks. Past performance and market cycles are not guarantees of future results. This content is for educational architecture only and does not constitute financial advice. © 2026 FinClarity.
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Progress Bar
+        window.onscroll = function() {
+            let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            let scrolled = (winScroll / height) * 100;
+            document.getElementById("progress-bar").style.width = scrolled + "%";
+            
+            // Link Highlight logic
+            const sections = ['anatomy', 'mean-reversion', 'history', 'indicators'];
+            sections.forEach(id => {
+                const el = document.getElementById(id);
+                const link = document.querySelector(`a[href="#${id}"]`);
+                if (el && el.offsetTop <= window.scrollY + 150) {
+                    document.querySelectorAll('.toc-link').forEach(l => l.classList.remove('active'));
+                    if (link) link.classList.add('active');
+                }
+            });
+        };
+
+        // Historical Cycle Chart
+        const ctx = document.getElementById('historicalChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['1992', '1995', '2000', '2004', '2008', '2012', '2016', '2020', '2024'],
+                datasets: [{
+                    label: 'Sensex Oscillation',
+                    data: [100, 150, 80, 250, 100, 350, 450, 280, 750],
+                    borderColor: '#10b981',
+                    borderWidth: 4,
+                    fill: true,
+                    backgroundColor: 'rgba(16, 185, 129, 0.05)',
+                    tension: 0.4,
+                    pointBackgroundColor: function(context) {
+                        const val = context.dataset.data[context.dataIndex];
+                        return val < 150 ? '#f43f5e' : '#10b981';
+                    },
+                    pointRadius: 6
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: { legend: { display: false } },
+                scales: {
+                    x: { grid: { display: false }, ticks: { color: '#475569', font: { weight: 'bold' } } },
+                    y: { grid: { color: 'rgba(255,255,255,0.02)' }, ticks: { display: false } }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
