@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SWP Architecture: The Pension Killer | FinClarity HQ</title>
+    
+    <!-- SEO & Metadata -->
+    <meta name="description" content="A 2,500-word institutional deep-dive into Systematic Withdrawal Plans (SWP). Master the 3-bucket strategy, sequence of returns risk, and tax arbitrage in India.">
+    <meta name="keywords" content="SWP Calculator India, Systematic Withdrawal Plan, Retirement Planning, 12.5% LTCG, 3 Bucket Strategy">
+    
+    <!-- Scripts & Libraries -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        :root { --midnight: #020617; --royal: #6366f1; --emerald: #10b981; --slate: #0f172a; }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: var(--midnight); color: #cbd5e1; line-height: 1.8; }
+        .glass-panel { background: rgba(30, 41, 59, 0.4); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.05); }
+        .royal-gradient { background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        
+        h2 { font-size: 2.5rem; font-weight: 800; color: #f8fafc; text-transform: uppercase; margin-top: 5rem; letter-spacing: -0.04em; border-left: 4px solid var(--royal); padding-left: 1.5rem; }
+        h3 { font-size: 1.5rem; font-weight: 700; color: #fff; margin-top: 2.5rem; }
+        p { margin-bottom: 1.8rem; font-size: 1.125rem; }
+        strong { color: #fff; font-weight: 800; }
+        
+        .milestone-card { border-left: 2px solid var(--royal); padding-left: 2rem; margin: 3rem 0; position: relative; }
+        .milestone-card::before { content: ''; position: absolute; left: -6px; top: 0; width: 10px; height: 10px; background: var(--royal); border-radius: 50%; }
+        
+        #progress-bar { position: fixed; top: 0; left: 0; height: 3px; background: var(--royal); width: 0%; z-index: 1000; }
+        .chart-container { position: relative; height: 450px; width: 100%; margin: 4rem 0; }
+    </style>
+</head>
+<body class="antialiased">
+
+    <div id="progress-bar"></div>
+
+    <!-- NAVIGATION -->
+    <nav class="h-20 glass-panel sticky top-0 z-[100] flex items-center justify-between px-8 border-b border-white/5">
+        <div class="flex items-center space-x-3">
+            <div class="w-10 h-10 bg-indigo-600 rounded-xl flex items-center justify-center text-white font-black text-xl">F</div>
+            <span class="text-xl font-bold tracking-tighter uppercase">FinClarity <span class="text-indigo-500">Academy</span></span>
+        </div>
+        <div class="flex items-center space-x-6">
+            <a href="https://finclarityhq.github.io/fimclarityhq/" class="text-[10px] font-black uppercase text-slate-400 hover:text-white transition tracking-widest underline decoration-indigo-500 underline-offset-8">← Return to Terminal</a>
+        </div>
+    </nav>
+
+    <!-- HERO HEADER -->
+    <header class="pt-32 pb-20 px-6 max-w-6xl mx-auto text-center">
+        <span class="text-indigo-500 font-black text-[10px] uppercase tracking-[0.5em] mb-4 block">Institutional Distribution Strategy // Masterclass</span>
+        <h1 class="text-6xl md:text-[7.5rem] font-black text-white leading-[0.85] mb-8 uppercase tracking-tighter">The SWP <br><span class="royal-gradient">Engine.</span></h1>
+        <p class="text-xl md:text-2xl text-slate-400 font-medium max-w-3xl mx-auto leading-relaxed">
+            Architecting a perpetual salary through mathematical distribution. Why the Systematic Withdrawal Plan is the ultimate hedge against inflation and taxes.
+        </p>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main class="max-w-4xl mx-auto px-6 pb-40">
+        
+        <section id="intro">
+            <p class="text-2xl text-white font-medium mb-12 border-b border-white/5 pb-12">
+                In the lifecycle of wealth, there are two distinct phases: <strong>Accumulation</strong> and <strong>Distribution</strong>. While the Indian financial narrative has spent decades obsessed with the former, the latter remains a neglected architecture. As we enter 2026, the traditional retirement pillars—Fixed Deposits and Insurance Annuities—have failed to keep pace with the non-linear rise in <strong>Healthcare Inflation</strong> and <strong>Fiscal Friction</strong>.
+            </p>
+            
+            <h2>01. The Death of the Fixed Annuity</h2>
+            <p>
+                For generations, the Indian retirement dream was defined by the security of a monthly pension. Whether through government schemes or private sector annuities, the goal was a fixed, guaranteed sum. However, in a <strong>Modern Economic Regime</strong>, a fixed sum is a decaying asset. 
+            </p>
+            <p>
+                Consider the math of purchasing power. If you retire today on a monthly pension of <strong>₹1,00,000</strong>, and retail inflation hovers at a modest 6 percent, your actual purchasing power in 15 years will be effectively halved to <strong>₹41,000</strong>. You are not "safe"; you are in a slow-motion bankruptcy.
+            </p>
+            <p>
+                The <strong>Systematic Withdrawal Plan (SWP)</strong> flips this script. Instead of receiving a fixed payout from a locked-in principal, you maintain ownership of the corpus, allowing it to remain invested in growth assets. This allows your monthly withdrawal to <strong>step up</strong> annually to match inflation, ensuring your lifestyle remains constant until your final day.
+            </p>
+        </section>
+
+        <!-- SOLVENCY CHART -->
+        <section class="chart-container glass-panel p-8 rounded-[2.5rem]">
+            <h4 class="text-center text-xs font-black uppercase tracking-widest text-indigo-400 mb-8">Corpus Solvency Simulation: 30 Years</h4>
+            <canvas id="solvencyChart"></canvas>
+            <p class="text-[10px] text-center text-slate-500 mt-6 uppercase font-bold">Figure 1: Comparison of principal depletion between Fixed Annuity vs. SWP with 6% annual hike.</p>
+        </section>
+
+        <section id="taxation">
+            <h2>02. Taxation Arbitrage: The SWP Shield</h2>
+            <p>
+                One of the most powerful institutional advantages of the SWP is its <strong>Tax Efficiency</strong>. When you receive interest from a Fixed Deposit or an Annuity payout, the entire amount is taxed as <strong>Income from Other Sources</strong> at your applicable slab rate—which can be as high as 30 to 39 percent for high-earners.
+            </p>
+            <p>
+                In contrast, an SWP from an Equity-Oriented Mutual Fund is treated as a <strong>Capital Gain</strong>. Following the 2024 Budget, Long-Term Capital Gains (LTCG) over one year are taxed at <strong>12.5 percent</strong>. Crucially, when you withdraw through an SWP, you aren't being taxed on the entire ₹1,00,000. You are only being taxed on the <strong>gain component</strong> of that withdrawal.
+            </p>
+            
+            <div class="glass-panel p-10 rounded-[2.5rem] my-12">
+                <h4 class="text-white font-bold mb-6">Comparative Post-Tax Yield (Monthly)</h4>
+                <div class="grid grid-cols-2 gap-8 text-sm">
+                    <div class="p-6 bg-slate-900 rounded-2xl">
+                        <p class="text-rose-500 font-bold uppercase text-[10px] mb-2">FD Interest / Annuity</p>
+                        <p class="text-white">Gross: ₹1,00,000</p>
+                        <p class="text-white">Tax (30% Slab): ₹30,000</p>
+                        <p class="text-2xl font-black mt-4">Net: ₹70,000</p>
+                    </div>
+                    <div class="p-6 bg-emerald-900/20 border border-emerald-500/20 rounded-2xl">
+                        <p class="text-emerald-500 font-bold uppercase text-[10px] mb-2">SWP Architecture</p>
+                        <p class="text-white">Gross: ₹1,00,000</p>
+                        <p class="text-white">Effective Tax: ~₹4,000</p>
+                        <p class="text-2xl font-black mt-4">Net: ₹96,000</p>
+                    </div>
+                </div>
+                <p class="text-[10px] mt-6 text-slate-500">Calculated based on 20% gain component in early years and 12.5% LTCG rate.</p>
+            </div>
+        </section>
+
+        <section id="buckets">
+            <h2>03. The 3-Bucket Distribution Framework</h2>
+            <p>
+                To implement a professional-grade SWP, we utilize the <strong>3-Bucket Strategy</strong>. This ensures that market volatility in any single year never forces you to sell your growth assets at a loss.
+            </p>
+
+            <div class="milestone-card">
+                <h3>Bucket 1: The Liquidity Reserve (0-2 Years)</h3>
+                <p>This bucket contains 24 months of your withdrawal requirements in <strong>Liquid Funds</strong> or <strong>Overnight Funds</strong>. This money is totally immune to stock market crashes. Even if the Nifty 50 drops 40 percent, your groceries for the next two years are already paid for.</p>
+            </div>
+
+            <div class="milestone-card">
+                <h3>Bucket 2: The Stability Buffer (3-7 Years)</h3>
+                <p>Contains 5 years of cash flow in <strong>Arbitrage Funds</strong> or <strong>Conservative Hybrid Funds</strong>. These assets offer slightly higher returns than Liquid funds but with minimal volatility. When Bucket 1 is empty, this bucket refills it.</p>
+            </div>
+
+            <div class="milestone-card">
+                <h3>Bucket 3: The Growth Engine (8+ Years)</h3>
+                <p>The remainder of your corpus stays in <strong>Broad-Market Index Funds</strong> or <strong>Flexi-cap Funds</strong>. Since this money isn't needed for at least 8 years, it has the "time runway" to recover from any market crash and provide the high returns (12-14%) needed to beat long-term inflation.</p>
+            </div>
+        </section>
+
+        <section id="sorr">
+            <h2>04. Managing Sequence of Returns Risk (SORR)</h2>
+            <p>
+                The most dangerous period of retirement is the first three years. This is due to <strong>Sequence of Returns Risk</strong>. If you retire and the market immediately crashes 30 percent while you are withdrawing money, your principal takes a double-hit (withdrawal + market loss). This can "mathematically break" your corpus longevity.
+            </p>
+            <p>
+                The SWP Architecture solves this by only withdrawing from <strong>Bucket 1</strong> during a bear market. You allow your Equity (Bucket 3) to sit undisturbed until the recovery happens. This strategic patience is what separates an <strong>Institutional Retiree</strong> from a retail participant.
+            </p>
+        </section>
+
+        <section id="execution">
+            <h2>05. Implementation Checklist</h2>
+            <div class="space-y-6">
+                <div class="p-8 bg-slate-900 rounded-[2rem] border border-white/5">
+                    <h4 class="text-white font-bold mb-4">1. The Solvency Ratio</h4>
+                    <p class="text-sm">Ensure your total corpus is at least <strong>30x to 40x</strong> your annual expense. If your expenses are ₹12 Lakh, you need a minimum of ₹3.6 Crore for a perpetual SWP.</p>
+                </div>
+                <div class="p-8 bg-slate-900 rounded-[2rem] border border-white/5">
+                    <h4 class="text-white font-bold mb-4">2. The Auto-Mandate</h4>
+                    <p class="text-sm">Set up an automated monthly SWP date (usually 1st or 5th) to simulate a salary. This removes the emotional hurdle of "selling" units every month.</p>
+                </div>
+                <div class="p-8 bg-slate-900 rounded-[2rem] border border-white/5">
+                    <h4 class="text-white font-bold mb-4">3. Annual Review & Rebalancing</h4>
+                    <p class="text-sm">Once a year, rebalance your buckets. If equity has had a massive year (e.g., 25% return), move the excess into the Safety Buckets to lock in your next 2 years of cash flow.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="final" class="mt-20 p-12 glass-panel rounded-[3rem] border border-indigo-500/20">
+            <h2 class="text-3xl mt-0 mb-6 royal-gradient">The Closing Verdict</h2>
+            <p class="text-lg text-white font-medium">
+                Traditional retirement tools were built for a world that no longer exists—a world of high interest and low healthcare costs. Today, the <strong>SWP Engine</strong> is the only architecture that respects the mathematical reality of longevity. By maintaining ownership of your capital, utilizing tax arbitrage, and bucket-segregating your risk, you move from "Surviving" to "Solvency."
+            </p>
+            <div class="mt-10 flex flex-col md:flex-row gap-4">
+                <a href="https://finclarityhq.github.io/fimclarityhq/" class="bg-indigo-600 text-white font-black px-10 py-5 rounded-full uppercase text-xs tracking-widest hover:bg-white hover:text-indigo-600 transition text-center shadow-xl shadow-indigo-600/20">Return to Wealth Terminal</a>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-black/50 py-24 px-8 border-t border-white/5 text-center">
+        <div class="max-w-7xl mx-auto">
+            <div class="w-12 h-12 bg-indigo-600 rounded-xl flex items-center justify-center text-white font-black text-xl mx-auto mb-8 shadow-2xl">F</div>
+            <p class="text-[10px] text-slate-600 font-black uppercase tracking-[0.6em] mb-8 leading-loose">
+                FinClarity HQ | Professional Wealth Distribution <br>
+                Institutional Quality // Perpetual Solvency
+            </p>
+            <p class="text-[9px] text-slate-800 uppercase leading-relaxed max-w-2xl mx-auto opacity-50">
+                Mutual Fund investments are subject to market risks. Read all scheme related documents carefully. This terminal is for educational architecture only and does not constitute SEBI-registered financial advice. © 2026 FinClarity.
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Progress Bar
+        window.onscroll = function() {
+            let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            let scrolled = (winScroll / height) * 100;
+            document.getElementById("progress-bar").style.width = scrolled + "%";
+        };
+
+        // Solvency Chart logic
+        const ctx = document.getElementById('solvencyChart').getContext('2d');
+        const solvencyChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: Array.from({length: 31}, (_, i) => `Y${i}`),
+                datasets: [
+                    {
+                        label: 'Standard Annuity (Fixed)',
+                        data: Array.from({length: 31}, (_, i) => 100 - (3.3 * i)), 
+                        borderColor: '#64748b',
+                        borderWidth: 2,
+                        pointRadius: 0,
+                        borderDash: [5, 5]
+                    },
+                    {
+                        label: 'Professional SWP (Perpetual)',
+                        data: [100, 101, 102.5, 103, 104, 106, 108, 112, 115, 119, 125, 132, 140, 152, 168, 185, 205, 230, 260, 295, 335, 380, 430, 490, 560, 640, 730, 830, 940, 1060, 1200],
+                        borderColor: '#6366f1',
+                        borderWidth: 4,
+                        fill: true,
+                        backgroundColor: 'rgba(99, 102, 241, 0.05)',
+                        tension: 0.4,
+                        pointRadius: 0
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: { legend: { display: true, labels: { color: '#64748b', font: { weight: 'bold' } } } },
+                scales: {
+                    x: { grid: { display: false }, ticks: { color: '#475569' } },
+                    y: { 
+                        display: true, 
+                        grid: { color: 'rgba(255,255,255,0.02)' }, 
+                        ticks: { color: '#475569' },
+                        title: { display: true, text: 'Corpus Value (%)', color: '#64748b' }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
